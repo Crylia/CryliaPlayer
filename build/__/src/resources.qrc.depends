@@ -1,0 +1,6 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+  <qresource prefix="/assets/icons">
+    <file>../assets/icons/songControl/shuffle.svg</file>
+  </qresource>
+</RCC>

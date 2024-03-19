@@ -14,6 +14,30 @@
 # EXTERNAL cache entries
 ########################
 
+//Path to a file.
+AVCODEC_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+AVCODEC_LIBRARY:FILEPATH=/usr/lib/libavcodec.so
+
+//Path to a file.
+AVDEVICE_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+AVDEVICE_LIBRARY:FILEPATH=/usr/lib/libavdevice.so
+
+//Path to a file.
+AVFORMAT_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+AVFORMAT_LIBRARY:FILEPATH=/usr/lib/libavformat.so
+
+//Path to a file.
+AVUTIL_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+AVUTIL_LIBRARY:FILEPATH=/usr/lib/libavutil.so
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 
@@ -32,11 +56,11 @@ CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
-CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-11
+CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar
 
 //A wrapper around 'ranlib' adding the appropriate '--plugin' option
 // for the GCC compiler
-CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-11
+CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib
 
 //Flags used by the CXX compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
@@ -74,6 +98,9 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Enable/Disable output of compile commands during generation.
 CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 
+//Value Computed by CMake.
+CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/pkgRedirects
+
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
 
@@ -81,7 +108,7 @@ CMAKE_INSTALL_PREFIX:PATH=/usr/local
 CMAKE_LINKER:FILEPATH=/usr/bin/ld
 
 //Path to a program.
-CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/gmake
+CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/make
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -192,6 +219,9 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Path to a program.
 CMAKE_STRIP:FILEPATH=/usr/bin/strip
 
+//Path to a program.
+CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
+
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
 // during the make.  This is useful for debugging only. With Visual
@@ -207,29 +237,68 @@ CryliaPlayer_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 CryliaPlayer_SOURCE_DIR:STATIC=/home/crylia/Dokumente/git/CryliaPlayer/build
 
+//The directory containing a CMake configuration file for FFmpeg.
+FFmpeg_DIR:PATH=FFmpeg_DIR-NOTFOUND
+
+//Arguments to supply to pkg-config
+PKG_CONFIG_ARGN:STRING=
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
+
 //The directory containing a CMake configuration file for QT.
-QT_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5
+QT_DIR:PATH=/usr/lib/cmake/Qt5
 
 //The directory containing a CMake configuration file for Qt5Core.
-Qt5Core_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Core
+Qt5Core_DIR:PATH=/usr/lib/cmake/Qt5Core
 
 //The directory containing a CMake configuration file for Qt5Gui.
-Qt5Gui_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui
+Qt5Gui_DIR:PATH=/usr/lib/cmake/Qt5Gui
 
 //The directory containing a CMake configuration file for Qt5Network.
-Qt5Network_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Network
+Qt5Network_DIR:PATH=/usr/lib/cmake/Qt5Network
 
 //The directory containing a CMake configuration file for Qt5Qml.
-Qt5Qml_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Qml
+Qt5Qml_DIR:PATH=/usr/lib/cmake/Qt5Qml
 
 //The directory containing a CMake configuration file for Qt5Svg.
-Qt5Svg_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Svg
+Qt5Svg_DIR:PATH=/usr/lib/cmake/Qt5Svg
 
 //The directory containing a CMake configuration file for Qt5Widgets.
-Qt5Widgets_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets
+Qt5Widgets_DIR:PATH=/usr/lib/cmake/Qt5Widgets
 
 //The directory containing a CMake configuration file for Qt5.
-Qt5_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt5
+Qt5_DIR:PATH=/usr/lib/cmake/Qt5
+
+//The directory containing a CMake configuration file for SDL2.
+SDL2_DIR:PATH=/usr/lib/cmake/SDL2
+
+//Path to a library.
+SDL_IMAGE_LIBRARY:FILEPATH=/usr/lib/libSDL2_image.so
+
+//Path to a library.
+SDL_MIXER_LIBRARY:FILEPATH=/usr/lib/libSDL2_mixer.so
+
+//Path to a library.
+pkgcfg_lib_LIBAV_avcodec:FILEPATH=/usr/lib/libavcodec.so
+
+//Path to a library.
+pkgcfg_lib_LIBAV_avdevice:FILEPATH=/usr/lib/libavdevice.so
+
+//Path to a library.
+pkgcfg_lib_LIBAV_avfilter:FILEPATH=/usr/lib/libavfilter.so
+
+//Path to a library.
+pkgcfg_lib_LIBAV_avformat:FILEPATH=/usr/lib/libavformat.so
+
+//Path to a library.
+pkgcfg_lib_LIBAV_avutil:FILEPATH=/usr/lib/libavutil.so
+
+//Path to a library.
+pkgcfg_lib_LIBAV_swresample:FILEPATH=/usr/lib/libswresample.so
+
+//Path to a library.
+pkgcfg_lib_LIBAV_swscale:FILEPATH=/usr/lib/libswscale.so
 
 
 ########################
@@ -245,9 +314,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/home/crylia/Dokumente/git/CryliaPlayer/build
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=22
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=28
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=1
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=3
 //ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
 CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 //Path to CMake executable.
@@ -274,6 +343,8 @@ CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_DLLTOOL
 CMAKE_DLLTOOL-ADVANCED:INTERNAL=1
+//Path to cache edit program executable.
+CMAKE_EDIT_COMMAND:INTERNAL=/usr/bin/ccmake
 //Executable file format
 CMAKE_EXECUTABLE_FORMAT:INTERNAL=ELF
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS
@@ -302,7 +373,7 @@ CMAKE_GENERATOR_TOOLSET:INTERNAL=
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/home/crylia/Dokumente/git/CryliaPlayer/build
 //Install .so files without execute permission.
-CMAKE_INSTALL_SO_NO_EXE:INTERNAL=1
+CMAKE_INSTALL_SO_NO_EXE:INTERNAL=0
 //ADVANCED property for variable: CMAKE_LINKER
 CMAKE_LINKER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MAKE_PROGRAM
@@ -332,7 +403,7 @@ CMAKE_RANLIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_READELF
 CMAKE_READELF-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=/usr/share/cmake-3.22
+CMAKE_ROOT:INTERNAL=/usr/share/cmake
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG
@@ -359,8 +430,101 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_STRIP
 CMAKE_STRIP-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_TAPI
+CMAKE_TAPI-ADVANCED:INTERNAL=1
 //uname command
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding PkgConfig
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v2.1.1()]
+LIBAV_CFLAGS:INTERNAL=-I/usr/include
+LIBAV_CFLAGS_I:INTERNAL=
+LIBAV_CFLAGS_OTHER:INTERNAL=
+LIBAV_FOUND:INTERNAL=1
+LIBAV_INCLUDEDIR:INTERNAL=
+LIBAV_INCLUDE_DIRS:INTERNAL=/usr/include
+LIBAV_LDFLAGS:INTERNAL=-L/usr/lib;-lavdevice;-lavfilter;-lavformat;-lavcodec;-lswresample;-lswscale;-lavutil
+LIBAV_LDFLAGS_OTHER:INTERNAL=
+LIBAV_LIBDIR:INTERNAL=
+LIBAV_LIBRARIES:INTERNAL=avdevice;avfilter;avformat;avcodec;swresample;swscale;avutil
+LIBAV_LIBRARY_DIRS:INTERNAL=/usr/lib
+LIBAV_LIBS:INTERNAL=
+LIBAV_LIBS_L:INTERNAL=
+LIBAV_LIBS_OTHER:INTERNAL=
+LIBAV_LIBS_PATHS:INTERNAL=
+LIBAV_MODULE_NAME:INTERNAL=
+LIBAV_PREFIX:INTERNAL=
+LIBAV_STATIC_CFLAGS:INTERNAL=-I/usr/include
+LIBAV_STATIC_CFLAGS_I:INTERNAL=
+LIBAV_STATIC_CFLAGS_OTHER:INTERNAL=
+LIBAV_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include
+LIBAV_STATIC_LDFLAGS:INTERNAL=-L/usr/lib;-lavdevice;-lm;-latomic;-lraw1394;-lavc1394;-lrom1394;-liec61883;-ljack;-ldrm;-lxcb;-lxcb-shm;-lxcb-shape;-lxcb-xfixes;-lasound;-lGL;-lpulse;-pthread;-lSDL2;-lv4l2;-lXv;-lX11;-lXext;-lavfilter;-pthread;-lm;-latomic;-lbs2b;-lrubberband;-lfftw3;-lsamplerate;-lstdc++;-lharfbuzz;-lfribidi;-lplacebo;-lvmaf;-lass;-lva;-lvidstab;-lm;-fopenmp;-lzimg;-lOpenCL;-lfontconfig;-lfreetype;-lfreetype;-L/usr/lib/pkgconfig/../;-lvpl;-ldl;-lstdc++;-lavformat;-lm;-latomic;-lxml2;-lbz2;-lmodplug;-lopenmpt;-lstdc++;-lvapoursynth-script;-lvapoursynth;-lbluray;-lgmp;-lz;-lgnutls;-lsrt;-lssh;-lavcodec;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lwebpmux;-pthread;-lm;-latomic;-llzma;-ldav1d;-lopencore-amrwb;-lrsvg-2;-lm;-lgio-2.0;-lgdk_pixbuf-2.0;-lgobject-2.0;-lglib-2.0;-lcairo;-lsnappy;-lstdc++;-laom;-lgsm;-ljxl;-ljxl_threads;-lmp3lame;-lm;-lopencore-amrnb;-lopenjp2;-lopus;-lrav1e;-lspeex;-lSvtAv1Enc;-ltheoraenc;-ltheoradec;-logg;-lvorbis;-lvorbisenc;-lwebp;-lx264;-lx265;-lxvidcore;-lz;-lva;-L/usr/lib/pkgconfig/../;-lvpl;-ldl;-lstdc++;-lswresample;-lm;-lsoxr;-latomic;-lswscale;-lm;-latomic;-lavutil;-pthread;-lva-drm;-lva;-lva-x11;-lva;-lvdpau;-lX11;-lm;-ldrm;-L/usr/lib/pkgconfig/../;-lvpl;-ldl;-lstdc++;-lOpenCL;-lva;-latomic;-lX11;-L/usr/lib;-lavfilter;-pthread;-lm;-latomic;-lbs2b;-lrubberband;-lfftw3;-lsamplerate;-lstdc++;-lharfbuzz;-lfribidi;-lplacebo;-lvmaf;-lass;-lva;-lvidstab;-lm;-fopenmp;-lzimg;-lOpenCL;-lfontconfig;-lfreetype;-lfreetype;-L/usr/lib/pkgconfig/../;-lvpl;-ldl;-lstdc++;-lpostproc;-lm;-latomic
+LIBAV_STATIC_LDFLAGS_OTHER:INTERNAL=-pthread;-pthread;-fopenmp;-pthread;-pthread;-pthread;-fopenmp
+LIBAV_STATIC_LIBDIR:INTERNAL=
+LIBAV_STATIC_LIBRARIES:INTERNAL=avdevice;m;atomic;raw1394;avc1394;rom1394;iec61883;jack;drm;xcb;xcb-shm;xcb-shape;xcb-xfixes;asound;GL;pulse;SDL2;v4l2;Xv;X11;Xext;avfilter;m;atomic;bs2b;rubberband;fftw3;samplerate;stdc++;harfbuzz;fribidi;placebo;vmaf;ass;va;vidstab;m;zimg;OpenCL;fontconfig;freetype;freetype;vpl;dl;stdc++;avformat;m;atomic;xml2;bz2;modplug;openmpt;stdc++;vapoursynth-script;vapoursynth;bluray;gmp;z;gnutls;srt;ssh;avcodec;vpx;m;vpx;m;vpx;m;vpx;m;webpmux;m;atomic;lzma;dav1d;opencore-amrwb;rsvg-2;m;gio-2.0;gdk_pixbuf-2.0;gobject-2.0;glib-2.0;cairo;snappy;stdc++;aom;gsm;jxl;jxl_threads;mp3lame;m;opencore-amrnb;openjp2;opus;rav1e;speex;SvtAv1Enc;theoraenc;theoradec;ogg;vorbis;vorbisenc;webp;x264;x265;xvidcore;z;va;vpl;dl;stdc++;swresample;m;soxr;atomic;swscale;m;atomic;avutil;va-drm;va;va-x11;va;vdpau;X11;m;drm;vpl;dl;stdc++;OpenCL;va;atomic;X11;avfilter;m;atomic;bs2b;rubberband;fftw3;samplerate;stdc++;harfbuzz;fribidi;placebo;vmaf;ass;va;vidstab;m;zimg;OpenCL;fontconfig;freetype;freetype;vpl;dl;stdc++;postproc;m;atomic
+LIBAV_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib;/usr/lib/pkgconfig/../;/usr/lib/pkgconfig/../;/usr/lib/pkgconfig/../;/usr/lib;/usr/lib/pkgconfig/../
+LIBAV_STATIC_LIBS:INTERNAL=
+LIBAV_STATIC_LIBS_L:INTERNAL=
+LIBAV_STATIC_LIBS_OTHER:INTERNAL=
+LIBAV_STATIC_LIBS_PATHS:INTERNAL=
+LIBAV_VERSION:INTERNAL=
+LIBAV_libavcodec_INCLUDEDIR:INTERNAL=/usr/include
+LIBAV_libavcodec_LIBDIR:INTERNAL=/usr/lib
+LIBAV_libavcodec_MODULE_NAME:INTERNAL=libavcodec
+LIBAV_libavcodec_PREFIX:INTERNAL=/usr
+LIBAV_libavcodec_VERSION:INTERNAL=60.31.102
+LIBAV_libavdevice_INCLUDEDIR:INTERNAL=/usr/include
+LIBAV_libavdevice_LIBDIR:INTERNAL=/usr/lib
+LIBAV_libavdevice_MODULE_NAME:INTERNAL=libavdevice
+LIBAV_libavdevice_PREFIX:INTERNAL=/usr
+LIBAV_libavdevice_VERSION:INTERNAL=60.3.100
+LIBAV_libavfilter_INCLUDEDIR:INTERNAL=/usr/include
+LIBAV_libavfilter_LIBDIR:INTERNAL=/usr/lib
+LIBAV_libavfilter_MODULE_NAME:INTERNAL=libavfilter
+LIBAV_libavfilter_PREFIX:INTERNAL=/usr
+LIBAV_libavfilter_VERSION:INTERNAL=9.12.100
+LIBAV_libavformat_INCLUDEDIR:INTERNAL=/usr/include
+LIBAV_libavformat_LIBDIR:INTERNAL=/usr/lib
+LIBAV_libavformat_MODULE_NAME:INTERNAL=libavformat
+LIBAV_libavformat_PREFIX:INTERNAL=/usr
+LIBAV_libavformat_VERSION:INTERNAL=60.16.100
+LIBAV_libavutil_INCLUDEDIR:INTERNAL=/usr/include
+LIBAV_libavutil_LIBDIR:INTERNAL=/usr/lib
+LIBAV_libavutil_MODULE_NAME:INTERNAL=libavutil
+LIBAV_libavutil_PREFIX:INTERNAL=/usr
+LIBAV_libavutil_VERSION:INTERNAL=58.29.100
+LIBAV_libswresample_INCLUDEDIR:INTERNAL=/usr/include
+LIBAV_libswresample_LIBDIR:INTERNAL=/usr/lib
+LIBAV_libswresample_MODULE_NAME:INTERNAL=libswresample
+LIBAV_libswresample_PREFIX:INTERNAL=/usr
+LIBAV_libswresample_VERSION:INTERNAL=4.12.100
+LIBAV_libswscale_INCLUDEDIR:INTERNAL=/usr/include
+LIBAV_libswscale_LIBDIR:INTERNAL=/usr/lib
+LIBAV_libswscale_MODULE_NAME:INTERNAL=libswscale
+LIBAV_libswscale_PREFIX:INTERNAL=/usr
+LIBAV_libswscale_VERSION:INTERNAL=7.5.100
+//ADVANCED property for variable: PKG_CONFIG_ARGN
+PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
+//linker supports push/pop state
+_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
+__pkg_config_arguments_LIBAV:INTERNAL=REQUIRED;IMPORTED_TARGET;libavdevice;libavfilter;libavformat;libavcodec;libswresample;libswscale;libavutil
+__pkg_config_checked_LIBAV:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LIBAV_avcodec
+pkgcfg_lib_LIBAV_avcodec-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LIBAV_avdevice
+pkgcfg_lib_LIBAV_avdevice-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LIBAV_avfilter
+pkgcfg_lib_LIBAV_avfilter-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LIBAV_avformat
+pkgcfg_lib_LIBAV_avformat-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LIBAV_avutil
+pkgcfg_lib_LIBAV_avutil-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LIBAV_swresample
+pkgcfg_lib_LIBAV_swresample-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_LIBAV_swscale
+pkgcfg_lib_LIBAV_swscale-ADVANCED:INTERNAL=1
+prefix_result:INTERNAL=/usr/lib
 

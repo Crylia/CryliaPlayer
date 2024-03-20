@@ -61,7 +61,7 @@ static QPushButton* makeSongControlButton(QString name, QSize size = QSize(36, 3
   return button;
 }
 
-FloatingControls::FloatingControls(QWidget* parent) :
+FloatingControls::FloatingControls(QWidget* parent, std::filesystem::path path) :
   QFrame(parent),
   volume(100),
   albumArtPath("default.png"),
@@ -69,8 +69,8 @@ FloatingControls::FloatingControls(QWidget* parent) :
   playPause(false),
   songRepeat(NONE),
   artist("Artist"),
-  songName("Song") {
-
+  songName("Song"),
+  song(Audio::getInstance(path)) {
   this->setFixedHeight(100);
   this->setObjectName("main");
   this->setStyleSheet(R"(
@@ -85,7 +85,6 @@ FloatingControls::FloatingControls(QWidget* parent) :
 
   /* Main Layout to store the Left Center and right controls */
   QHBoxLayout* mainLayout = new QHBoxLayout(this);
-
   /* Left side Icon, Artist and Song info */
   QHBoxLayout* leftLayout = new QHBoxLayout( );
   leftLayout->setSpacing(10);
@@ -102,12 +101,13 @@ FloatingControls::FloatingControls(QWidget* parent) :
     }
   )");
   //! Change later to the actual album art when the controls are done
-  albumArt->setPixmap(QPixmap(":aqua.jpg").scaled(QSize(64, 64), Qt::IgnoreAspectRatio));
+  albumArt->setPixmap(song.GetAlbumCover( ).scaled(QSize(64, 64), Qt::IgnoreAspectRatio));
   leftLayout->addWidget(albumArt);
 
   // Artist and Song name layout
   QVBoxLayout* artistSongLayout = new QVBoxLayout( );
-  QLabel* artist = new QLabel(getArtist( ));
+  QLabel* artist = new QLabel(QString::fromStdString(song.GetArtist( )));
+  artist->setMinimumWidth(50);
   connect(this, &FloatingControls::artistChanged, artist, &QLabel::setText);
   artist->setObjectName("artist");
   artist->setStyleSheet(R"(
@@ -118,9 +118,13 @@ FloatingControls::FloatingControls(QWidget* parent) :
     }
   )");
 
-  QLabel* songName = new QLabel(getSongName( ));
+  QLabel* songName = new QLabel( );
+  songName->setMinimumWidth(50);
+  QFontMetrics metrics(songName->font( ));
+  songName->setText(metrics.elidedText(QString::fromStdString(song.GetTitle( )), Qt::ElideRight, songName->width( )));
+
   connect(this, &FloatingControls::songNameChanged, songName, &QLabel::setText);
-  songName->setObjectName("songName");
+  songName->setObjectName("title");
   songName->setStyleSheet(R"(
     QLabel#songName{
       font-size: 14px;
@@ -135,6 +139,9 @@ FloatingControls::FloatingControls(QWidget* parent) :
   QVBoxLayout* centerLayout = new QVBoxLayout( );
   centerLayout->setAlignment(Qt::AlignCenter);
 
+  mainLayout->setStretchFactor(leftLayout, 1);
+  mainLayout->setStretchFactor(centerLayout, 0.1);
+
   QHBoxLayout* songControlsLayout = new QHBoxLayout( );
   songControlsLayout->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
 
@@ -145,9 +152,30 @@ FloatingControls::FloatingControls(QWidget* parent) :
       col = "#CC79AB";
     else
       col = "#D7D7D7";
+    QPushButton* pb = makeSongControlButton(buttonNames[i], QSize(36, 36), col);
+    if (buttonNames[i] == "play") {
+      //TODO Change later
+      QObject::connect(pb, &QPushButton::clicked, [pb, this]( ) {
+        if (!song.IsMusicPlaying( )) {
+          song.StartMusic( );
+          pb->setIcon(RenderSvg(":/icons/songControl/pause.svg"));
+          return;
+        }
+        if (GetPlayPause( )) {
+          song.ResumeMusic( );
+          pb->setIcon(RenderSvg(":/icons/songControl/pause.svg"));
+        }
+        else {
+          song.PauseMusic( );
+          pb->setIcon(RenderSvg(":/icons/songControl/play.svg"));
+        }
+        togglePlayPause( );
+        });
+    }
+    songControlsLayout->addWidget(pb);
 
-    songControlsLayout->addWidget(makeSongControlButton(buttonNames[i], QSize(36, 36), col));
   }
+
 
   centerLayout->addLayout(songControlsLayout);
 
@@ -156,6 +184,12 @@ FloatingControls::FloatingControls(QWidget* parent) :
 
   // Song timestamp
   QLabel* songTimestamp = new QLabel("00:00");
+  songTimestamp->setText(
+    QTime(
+      0,
+      song.GetMusicPos( ) / 60,
+      song.GetMusicPos( ) % 60
+    ).toString("mm:ss"));
   songTimestamp->setObjectName("songTimestamp");
   songTimestamp->setStyleSheet(R"(
     QLabel#songTimestamp{
@@ -167,6 +201,12 @@ FloatingControls::FloatingControls(QWidget* parent) :
 
   // Song duration
   QLabel* songDuration = new QLabel("00:00");
+  songDuration->setText(
+    QTime(
+      0,
+      song.GetMusicDuration( ) / 60,
+      song.GetMusicDuration( ) % 60
+    ).toString("mm:ss"));
   songDuration->setObjectName("songDuration");
   songDuration->setStyleSheet(R"(
     QLabel#songDuration{
@@ -178,9 +218,8 @@ FloatingControls::FloatingControls(QWidget* parent) :
   // Song duration slider
   QSlider* songDurationSlider = new QSlider(Qt::Horizontal);
   songDurationSlider->setObjectName("songDurationSlider");
-  songDurationSlider->setRange(0, 100);
-  songDurationSlider->setValue(50);
-  songDurationSlider->setFixedWidth(480);
+  songDurationSlider->setRange(0, song.GetMusicDuration( ));
+  songDurationSlider->setValue(song.GetMusicPos( ));
   songDurationSlider->setFixedHeight(28);
   songDurationSlider->setStyleSheet(R"(
     QSlider#songDurationSlider::groove:horizontal{
@@ -204,9 +243,31 @@ FloatingControls::FloatingControls(QWidget* parent) :
     }
   )");
   songDurationSlider->setCursor(Qt::PointingHandCursor);
+
+  connect(songDurationSlider, &QSlider::sliderReleased, [this, songDurationSlider]( ) {
+    song.SetMusicPos(songDurationSlider->value( ));
+    });
+
   songScrollerLayout->addWidget(songTimestamp);
   songScrollerLayout->addWidget(songDurationSlider);
   songScrollerLayout->addWidget(songDuration);
+
+  QTimer* timer = new QTimer(this);
+
+  connect(timer, &QTimer::timeout, this, [this, songTimestamp, songDurationSlider]( ) {
+    int sec = song.GetMusicPos( );
+
+    songTimestamp->setText(
+      QTime(
+        0,
+        sec / 60,
+        sec % 60
+      ).toString("mm:ss"));
+
+    songDurationSlider->setValue(sec);
+    //std::cout << songTimestamp->text( ).toStdString( ) << std::endl;
+    });
+  timer->start(1000);
 
   centerLayout->addLayout(songScrollerLayout);
 
@@ -228,9 +289,8 @@ FloatingControls::FloatingControls(QWidget* parent) :
   //Volume slider
   QSlider* VolumeSlider = new QSlider(Qt::Horizontal);
   VolumeSlider->setObjectName("volumeSlider");
-  VolumeSlider->setRange(0, 100);
-  VolumeSlider->setValue(volume);
-  VolumeSlider->setFixedWidth(150);
+  VolumeSlider->setRange(0, 128);
+  VolumeSlider->setValue(song.GetVolume( ));
   VolumeSlider->setFixedHeight(28);
   VolumeSlider->setStyleSheet(R"(
     QSlider#volumeSlider::groove:horizontal{
@@ -254,6 +314,11 @@ FloatingControls::FloatingControls(QWidget* parent) :
     }
   )");
   VolumeSlider->setCursor(Qt::PointingHandCursor);
+
+  connect(VolumeSlider, &QSlider::valueChanged, [this, VolumeSlider]( ) {
+    song.SetVolume(VolumeSlider->value( ));
+    });
+
   rightLayout->addWidget(VolumeSlider);
 
   //Fullscreen button

@@ -9,25 +9,11 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Find Qt
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Qml Svg Core)
+find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets Qml Svg Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Qml Svg Core)
-
 find_package(SDL2 REQUIRED)
-find_library(SDL_MIXER_LIBRARY
-    NAMES SDL2_mixer
-    HINTS
-    ENV SDLMIXERDIR
-    ENV SDLDIR
-    PATH_SUFFIXES lib
-)
-find_library(SDL_IMAGE_LIBRARY
-    NAMES SDL2_image
-    HINTS
-    ENV SDLIMAGEDIR
-    ENV SDLDIR
-    PATH_SUFFIXES lib
-)
+find_library(SDL_MIXER_LIBRARY NAMES SDL2_mixer)
+find_library(SDL_IMAGE_LIBRARY NAMES SDL2_image)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
@@ -40,53 +26,15 @@ pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
     libavutil
 )
 
-set(PROJECT_SOURCES
-    ../src/main.cpp
-    ../src/core/audio/audio.cpp
-    ../src/Public/MainWindow.cpp
-    ../src/Public/Modules/FloatingControls/FloatingControls.cpp
-    ../src/Public/Pages/pages.cpp
-    ../src/Public/Pages/Playlist/PlaylistPage.cpp
-    ../src/Public/Widgets/Playlist/PlaylistWidget.cpp
-    ../src/Public/Layouts/QOverlayout.cpp
-)
+file(GLOB_RECURSE PROJECT_SOURCES ../src/*.cpp)
+file(GLOB_RECURSE PROJECT_HEADERS ../src/*.h)
+file(GLOB_RECURSE PROJECT_RESOURCES ../assets/resources.qrc)
 
-set(PROJECT_HEADERS
-    ../src/core/audio/audio.h
-    ../src/Public/MainWindow.h
-    ../src/Public/Modules/FloatingControls/FloatingControls.h
-    ../src/Public/Pages/pages.h
-    ../src/Public/Pages/Playlist/PlaylistPage.h
-    ../src/Public/Widgets/Playlist/PlaylistWidget.h
-    ../src/Public/Layouts/QOverlayout.h
+add_executable(CryliaPlayer
+    ${PROJECT_SOURCES}
+    ${PROJECT_HEADERS}
+    ${PROJECT_RESOURCES}
 )
-
-set(PROJECT_RESOURCES
-    ../assets/resources.qrc
-)
-
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(CryliaPlayer
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-        ${PROJECT_HEADERS}
-        ${PROJECT_RESOURCES}
-    )
-else()
-    if(ANDROID)
-        add_library(CryliaPlayer SHARED
-            ${PROJECT_SOURCES}
-            ${PROJECT_HEADERS}
-            ${PROJECT_RESOURCES}
-        )
-    else()
-        add_executable(CryliaPlayer
-            ${PROJECT_SOURCES}
-            ${PROJECT_HEADERS}
-            ${PROJECT_RESOURCES}
-        )
-    endif()
-endif()
 
 target_link_libraries(CryliaPlayer PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
@@ -99,19 +47,16 @@ target_link_libraries(CryliaPlayer PRIVATE
     PkgConfig::LIBAV
 )
 
-# set_target_properties(CryliaPlayer PROPERTIES
-# MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
-# MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-# MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-# MACOSX_BUNDLE TRUE
-# WIN32_EXECUTABLE TRUE
-# )
 install(TARGETS CryliaPlayer
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(CryliaPlayer)
-endif()
+set(DESKTOP_FILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/CryliaPlayer.desktop.in)
+set(DESKTOP_FILE ${CMAKE_CURRENT_BINARY_DIR}/CryliaPlayer.desktop)
+
+configure_file(${DESKTOP_FILE_IN} ${DESKTOP_FILE} @ONLY)
+
+install(FILES ${DESKTOP_FILE} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications)
+install(FILES ../assets/aqua.jpg DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons)

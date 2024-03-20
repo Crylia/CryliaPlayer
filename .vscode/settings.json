@@ -1,4 +1,4 @@
 {
-  "cmake.sourceDirectory": "/home/crylia/Dokumente/git/CryliaPlayer/src",
+  "cmake.sourceDirectory": "/home/crylia/Dokumente/git/CryliaPlayer/build",
   "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }

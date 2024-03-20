@@ -1,15 +1,8 @@
-#include <QtWidgets>
-#include <QLayout>
-
 #include "MainWindow.h"
-#include "Modules/FloatingControls/FloatingControls.h"
-#include "Layouts/QOverlayout.h"
-#include "Pages/pages.h"
-#include "Pages/Playlist/PlaylistPage.h"
-#include "Widgets/Playlist/PlaylistWidget.h"
 
-MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
+void MainWindow::setupMainWindow( ) {
   this->setWindowTitle("Crylia Player");
+  this->setWindowIcon(QIcon(":aqua.jpg"));
 
   QWidget* mw = new QWidget(this);
   mw->setContentsMargins(10, 10, 10, 10);
@@ -20,7 +13,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
   Pages* p = new Pages(mw);
   PlaylistPage* pp = new PlaylistPage(mw);
   PlaylistWidget* pw = new PlaylistWidget(mw);
-  FloatingControls* fc = new FloatingControls(mw);
+  FloatingControls* fc = new FloatingControls(mw, this->path);
 
   QVBoxLayout* vbox = new QVBoxLayout( );
   vbox->addWidget(fc, 0, Qt::AlignBottom);
@@ -39,6 +32,15 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
   ol->addItem(hbox);
 
   this->setCentralWidget(mw);
+}
+
+MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
+  setupMainWindow( );
+}
+
+MainWindow::MainWindow(std::filesystem::path path, QWidget* parent)
+  : QMainWindow(parent), path(path) {
+  setupMainWindow( );
 }
 
 MainWindow::~MainWindow( ) { }

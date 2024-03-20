@@ -1,10 +1,28 @@
 #include "Public/MainWindow.h"
 
+#include <filesystem>
 #include <QApplication>
+#include <iostream>
+
+bool CheckValidFile(std::filesystem::path path) {
+    //Allow to start with a song
+    if (!std::filesystem::exists(path) || !std::filesystem::is_regular_file(path)) {
+        std::cerr << "ERROR: Path or file doesn't exist / is valid" << std::endl;
+        return false;
+    }
+    std::string extension = path.extension( ).string( );
+    if (!(extension == ".mp3" || extension == ".flac")) {
+        std::cerr << "ERROR: Filetype is not supported, supported types are .mp3, .flac" << std::endl;
+        return false;
+    }
+    return true;
+}
 
 int main(int argc, char* argv[]) {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show( );
+    MainWindow* w = argc > 1 && CheckValidFile(std::filesystem::path(argv[1])) ? new MainWindow(std::filesystem::path(argv[1])) : new MainWindow( );
+    w->setMinimumHeight(600);
+    w->show( );
+
     return a.exec( );
 }

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=CryliaPlayer
+Exec=@CMAKE_INSTALL_PREFIX@/bin/CryliaPlayer %f
+MimeType=audio/mpeg;audio/x-flac;
+Icon=@CMAKE_INSTALL_PREFIX@/share/icons/aqua.jpg
+Terminal=false

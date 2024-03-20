@@ -66,14 +66,14 @@ include CMakeFiles/CryliaPlayer_autogen_timestamp_deps.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/CryliaPlayer_autogen_timestamp_deps.dir/progress.make
 
-CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/libQt5Core.so.5.15.13
-CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/libQt5Widgets.so.5.15.13
-CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/bin/uic
-CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/libQt5Qml.so.5.15.13
-CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/bin/moc
-CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/libQt5Svg.so.5.15.13
-CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/libSDL2-2.0.so.0.3000.1
+CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/qt6/uic
+CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/libQt6Core.so.6.6.2
+CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/qt6/moc
+CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/libQt6Widgets.so.6.6.2
+CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/libQt6Qml.so.6.6.2
 CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/libSDL2main.a
+CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/libSDL2-2.0.so.0.3000.1
+CMakeFiles/CryliaPlayer_autogen_timestamp_deps: /usr/lib/libQt6Svg.so.6.6.2
 
 CryliaPlayer_autogen_timestamp_deps: CMakeFiles/CryliaPlayer_autogen_timestamp_deps
 CryliaPlayer_autogen_timestamp_deps: CMakeFiles/CryliaPlayer_autogen_timestamp_deps.dir/build.make

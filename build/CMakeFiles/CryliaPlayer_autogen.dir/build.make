@@ -68,8 +68,8 @@ include CMakeFiles/CryliaPlayer_autogen.dir/progress.make
 
 CMakeFiles/CryliaPlayer_autogen: CryliaPlayer_autogen/timestamp
 
-CryliaPlayer_autogen/timestamp: /usr/bin/moc
-CryliaPlayer_autogen/timestamp: /usr/bin/uic
+CryliaPlayer_autogen/timestamp: /usr/lib/qt6/moc
+CryliaPlayer_autogen/timestamp: /usr/lib/qt6/uic
 CryliaPlayer_autogen/timestamp: CMakeFiles/CryliaPlayer_autogen.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target CryliaPlayer"
 	/usr/bin/cmake -E cmake_autogen /home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/CryliaPlayer_autogen.dir/AutogenInfo.json ""

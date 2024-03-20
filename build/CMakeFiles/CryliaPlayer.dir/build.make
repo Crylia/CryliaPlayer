@@ -69,8 +69,8 @@ include CMakeFiles/CryliaPlayer.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/CryliaPlayer.dir/flags.make
 
-CryliaPlayer_autogen/timestamp: /usr/bin/moc
-CryliaPlayer_autogen/timestamp: /usr/bin/uic
+CryliaPlayer_autogen/timestamp: /usr/lib/qt6/moc
+CryliaPlayer_autogen/timestamp: /usr/lib/qt6/uic
 CryliaPlayer_autogen/timestamp: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target CryliaPlayer"
 	/usr/bin/cmake -E cmake_autogen /home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/CryliaPlayer_autogen.dir/AutogenInfo.json ""
@@ -80,21 +80,21 @@ CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/Cr
 CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: CMakeFiles/CryliaPlayer_autogen.dir/AutoRcc_resources_MWOCUN3OZU_Info.json
 CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/aqua.jpg
 CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/volume-mute.svg
-CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/arrow-expand.svg
-CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/pause.svg
-CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/songRepeat.svg
-CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/volume-low.svg
-CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/repeat-once.svg
-CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/volume-medium.svg
-CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/prevSong.svg
 CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/play.svg
-CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/volume-off.svg
-CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/home.svg
 CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/volume-high.svg
-CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/shuffle.svg
-CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/nextSong.svg
+CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/volume-off.svg
 CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/magnify.svg
-CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /usr/bin/rcc
+CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/pause.svg
+CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/arrow-expand.svg
+CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/volume-medium.svg
+CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/shuffle.svg
+CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/prevSong.svg
+CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/volume-low.svg
+CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/home.svg
+CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/nextSong.svg
+CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/songRepeat.svg
+CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /home/crylia/Dokumente/git/CryliaPlayer/assets/icons/songControl/repeat-once.svg
+CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp: /usr/lib/qt6/rcc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic RCC for ../assets/resources.qrc"
 	/usr/bin/cmake -E cmake_autorcc /home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/CryliaPlayer_autogen.dir/AutoRcc_resources_MWOCUN3OZU_Info.json 
 
@@ -112,38 +112,24 @@ CMakeFiles/CryliaPlayer.dir/CryliaPlayer_autogen/mocs_compilation.cpp.s: cmake_f
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/CryliaPlayer_autogen/mocs_compilation.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/build/CryliaPlayer_autogen/mocs_compilation.cpp -o CMakeFiles/CryliaPlayer.dir/CryliaPlayer_autogen/mocs_compilation.cpp.s
 
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o -MF CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o.d -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o -c /home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o -MF CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o.d -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o -c /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp
 
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp > CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.i
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp > CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.i
 
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.s
-
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o -MF CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o.d -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o -c /home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp
-
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp > CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.i
-
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.s
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.s
 
 CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
 CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp
 CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp.o: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp.o -MF CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp.o.d -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp.o -c /home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp
 
 CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp.i: cmake_force
@@ -157,7 +143,7 @@ CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Ma
 CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
 CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp
 CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.o: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.o -MF CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.o.d -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.o -c /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp
 
 CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.i: cmake_force
@@ -168,19 +154,33 @@ CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Mo
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.s
 
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.o: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.o -MF CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.o.d -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.o -c /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.o: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.o -MF CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.o.d -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.o -c /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp
 
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp > CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.i
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp > CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.i
 
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.s
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.s
+
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.o: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.o -MF CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.o.d -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.o -c /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp
+
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp > CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.i
+
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.s
 
 CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/Playlist/PlaylistPage.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
 CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/Playlist/PlaylistPage.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/Playlist/PlaylistPage.cpp
@@ -196,33 +196,33 @@ CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pa
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/Playlist/PlaylistPage.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/Playlist/PlaylistPage.cpp -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/Playlist/PlaylistPage.cpp.s
 
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.o: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.o -MF CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.o.d -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.o -c /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o -MF CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o.d -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o -c /home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp
 
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp > CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.i
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp > CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.i
 
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.s
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.s
 
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o -MF CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o.d -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o -c /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o: /home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o: CMakeFiles/CryliaPlayer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o -MF CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o.d -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o -c /home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp
 
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp > CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.i
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp > CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.i
 
-CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.s
+CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp -o CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.s
 
 CMakeFiles/CryliaPlayer.dir/CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp.o: CMakeFiles/CryliaPlayer.dir/flags.make
 CMakeFiles/CryliaPlayer.dir/CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp.o: CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp
@@ -241,40 +241,42 @@ CMakeFiles/CryliaPlayer.dir/CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp.s:
 # Object files for target CryliaPlayer
 CryliaPlayer_OBJECTS = \
 "CMakeFiles/CryliaPlayer.dir/CryliaPlayer_autogen/mocs_compilation.cpp.o" \
-"CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o" \
-"CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o" \
+"CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o" \
 "CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp.o" \
 "CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.o" \
-"CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.o" \
+"CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.o" \
+"CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.o" \
 "CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/Playlist/PlaylistPage.cpp.o" \
-"CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.o" \
-"CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o" \
+"CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o" \
+"CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o" \
 "CMakeFiles/CryliaPlayer.dir/CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp.o"
 
 # External object files for target CryliaPlayer
 CryliaPlayer_EXTERNAL_OBJECTS =
 
 CryliaPlayer: CMakeFiles/CryliaPlayer.dir/CryliaPlayer_autogen/mocs_compilation.cpp.o
-CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o
-CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o
+CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o
 CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/MainWindow.cpp.o
 CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/FloatingControls/FloatingControls.cpp.o
-CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/pages.cpp.o
+CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PageNavigator/pages.cpp.o
+CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Modules/PlaylistNavigator/PlaylistWidget.cpp.o
 CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Pages/Playlist/PlaylistPage.cpp.o
-CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Widgets/Playlist/PlaylistWidget.cpp.o
-CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/Public/Layouts/QOverlayout.cpp.o
+CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/core/audio/audio.cpp.o
+CryliaPlayer: CMakeFiles/CryliaPlayer.dir/home/crylia/Dokumente/git/CryliaPlayer/src/main.cpp.o
 CryliaPlayer: CMakeFiles/CryliaPlayer.dir/CryliaPlayer_autogen/MWOCUN3OZU/qrc_resources.cpp.o
 CryliaPlayer: CMakeFiles/CryliaPlayer.dir/build.make
-CryliaPlayer: /usr/lib/libQt5Qml.so.5.15.13
-CryliaPlayer: /usr/lib/libQt5Svg.so.5.15.13
+CryliaPlayer: /usr/lib/libQt6Widgets.so.6.6.2
+CryliaPlayer: /usr/lib/libQt6Qml.so.6.6.2
+CryliaPlayer: /usr/lib/libQt6Svg.so.6.6.2
 CryliaPlayer: /usr/lib/libSDL2main.a
 CryliaPlayer: /usr/lib/libSDL2-2.0.so.0.3000.1
 CryliaPlayer: /usr/lib/libSDL2_image.so
 CryliaPlayer: /usr/lib/libSDL2_mixer.so
-CryliaPlayer: /usr/lib/libQt5Network.so.5.15.13
-CryliaPlayer: /usr/lib/libQt5Widgets.so.5.15.13
-CryliaPlayer: /usr/lib/libQt5Gui.so.5.15.13
-CryliaPlayer: /usr/lib/libQt5Core.so.5.15.13
+CryliaPlayer: /usr/lib/libQt6Network.so.6.6.2
+CryliaPlayer: /usr/lib/libQt6Gui.so.6.6.2
+CryliaPlayer: /usr/lib/libQt6Core.so.6.6.2
+CryliaPlayer: /usr/lib/libGLX.so
+CryliaPlayer: /usr/lib/libOpenGL.so
 CryliaPlayer: /usr/lib/libavdevice.so
 CryliaPlayer: /usr/lib/libavfilter.so
 CryliaPlayer: /usr/lib/libavformat.so

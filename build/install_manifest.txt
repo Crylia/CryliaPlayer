@@ -1,0 +1,3 @@
+/usr/local/bin/CryliaPlayer
+/usr/local/share/applications/CryliaPlayer.desktop
+/usr/local/share/icons/aqua.jpg

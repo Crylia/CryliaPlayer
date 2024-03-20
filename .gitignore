@@ -53,6 +53,6 @@ compile_commands.json
 
 *_qmlcache.qrc
 
-CMakeFiles/
-CryliaPlayer_autogen/
-.qt/
+build/CMakeFiles/
+build/CryliaPlayer_autogen/
+build/.qt/

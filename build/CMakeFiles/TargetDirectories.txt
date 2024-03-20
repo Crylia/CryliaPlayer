@@ -1,9 +1,0 @@
-/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/CryliaPlayer.dir
-/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/edit_cache.dir
-/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/rebuild_cache.dir
-/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/list_install_components.dir
-/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/install.dir
-/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/install/local.dir
-/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/install/strip.dir
-/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/CryliaPlayer_autogen_timestamp_deps.dir
-/home/crylia/Dokumente/git/CryliaPlayer/build/CMakeFiles/CryliaPlayer_autogen.dir

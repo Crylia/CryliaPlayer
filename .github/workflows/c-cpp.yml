@@ -16,21 +16,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Qt
-        uses: jurplel/install-qt-action@v2
+      - name: Install QT
+        uses: jurplel/install-qt-action@v3.3.0
         with:
-          qt-version: '6.2.0'
+          version: '6.2.0'
 
       - name: Configure project
         run: |
-          mkdir build
           cd build
-          cmake ..
+          cmake .
           
       - name: Build project
         run: |
-          cd build
-          make
+          make install
           
       - name: Run tests
         run: |

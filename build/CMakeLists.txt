@@ -11,7 +11,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets Qml Svg Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Qml Svg Core)
-find_package(SDL2 REQUIRED)
+
+# find_package(SDL2 REQUIRED)
 find_library(SDL_MIXER_LIBRARY NAMES SDL2_mixer)
 find_library(SDL_IMAGE_LIBRARY NAMES SDL2_image)
 
@@ -25,6 +26,7 @@ pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
     libswscale
     libavutil
 )
+PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
 
 file(GLOB_RECURSE PROJECT_SOURCES ../src/*.cpp)
 file(GLOB_RECURSE PROJECT_HEADERS ../src/*.h)

@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include <QFrame>
+#include "../../Widgets/PageNavigator/PageNavigator.h"
 
 class Pages : public QFrame {
 

@@ -11,6 +11,17 @@ Pages::Pages(QWidget* parent) :QFrame(parent) {
   )");
 
   this->setFixedSize(300, 180);
+
+  QVBoxLayout* layout = new QVBoxLayout(this);
+
+  PageNavigator* home = new PageNavigator("Home", ":icons/home.svg");
+  PageNavigator* localFiles = new PageNavigator("Local Files", ":icons/home.svg");
+  PageNavigator* playlist = new PageNavigator("Playlist", ":icons/songControl/magnify.svg");
+
+
+  layout->addWidget(home);
+  layout->addWidget(localFiles);
+  layout->addWidget(playlist);
 }
 
 Pages::~Pages( ) { }

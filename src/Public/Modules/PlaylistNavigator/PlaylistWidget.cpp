@@ -9,6 +9,9 @@ PlaylistWidget::PlaylistWidget(QWidget* parent) : QFrame(parent) {
 
   this->setFixedWidth(300);
 
+  QVBoxLayout* mainLayout = new QVBoxLayout(this);
+  mainLayout->addSpacing(10);
+
 }
 
 PlaylistWidget::~PlaylistWidget( ) { }

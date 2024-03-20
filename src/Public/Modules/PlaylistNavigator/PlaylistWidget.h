@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include <QFrame>
+#include <QLayout>
 
 class PlaylistWidget : public QFrame {
 

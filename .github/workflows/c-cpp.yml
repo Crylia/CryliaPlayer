@@ -25,8 +25,8 @@ jobs:
         uses: libsdl-org/setup-sdl@main
         with:
           install-linux-dependencies: true
-          version: 2-head
-          version-sdl-mixer: 2-head
+          version: 3-latest
+          version-sdl-mixer: 3-latest
 
       - name: Install FFmpeg  
         uses: AnimMouse/setup-ffmpeg@v1

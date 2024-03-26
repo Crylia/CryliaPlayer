@@ -12,8 +12,22 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets Qml Svg Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Qml Svg Core)
 
-find_package(SDL2 REQUIRED)
-find_library(SDL2_MIXER_LIBRARY SDL2_mixer)
+find_package(SDL2 QUIET)
+
+if(NOT SDL2_FOUND)
+    message(STATUS "SDL2 not found. Fallback to SDL3.")
+
+    # Find SDL3 package
+    find_package(SDL3 REQUIRED)
+    set(SDL_INCLUDE_DIRS ${SDL3_INCLUDE_DIRS})
+    set(SDL_LIBRARIES ${SDL3_LIBRARIES})
+else()
+    message(STATUS "SDL2 found.")
+    set(SDL_INCLUDE_DIRS ${SDL2_INCLUDE_DIRS})
+    set(SDL_LIBRARIES ${SDL2_LIBRARIES})
+endif()
+
+find_library(SDL_MIXER_LIBRARY NAMES SDL2_mixer SDL3_mixer)
 include_directories(${SDL2_INCLUDE_DIRS})
 
 find_package(PkgConfig REQUIRED)
@@ -42,8 +56,8 @@ target_link_libraries(CryliaPlayer PRIVATE
     Qt${QT_VERSION_MAJOR}::Qml
     Qt${QT_VERSION_MAJOR}::Svg
     Qt${QT_VERSION_MAJOR}::Core
-    ${SDL2_LIBRARIES}
-    ${SDL2_MIXER_LIBRARY}
+    ${SDL_LIBRARIES}
+    ${SDL_MIXER_LIBRARY}
     PkgConfig::LIBAV
 )
 

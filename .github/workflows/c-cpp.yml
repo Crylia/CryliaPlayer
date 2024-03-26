@@ -26,8 +26,13 @@ jobs:
         with:
           install-linux-dependencies: true
           version: 2.8.0
-          version-sdl-mixer: 2.8.0
           
+      - name: Install SDL2 mixer
+        uses: libsdl-org/setup-sdl@v1
+        with:
+          install-linux-dependencies: true
+          version-sdl-mixer: 2.8.0
+
       - name: Install FFmpeg  
         uses: AnimMouse/setup-ffmpeg@v1
         

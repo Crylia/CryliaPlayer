@@ -12,9 +12,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets Qml Svg Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Qml Svg Core)
 
-# find_package(SDL2 REQUIRED)
-find_library(SDL_MIXER_LIBRARY NAMES SDL2_mixer)
-find_library(SDL_IMAGE_LIBRARY NAMES SDL2_image)
+find_package(SDL2 REQUIRED)
+find_library(SDL2_MIXER_LIBRARY SDL2_mixer)
+include_directories(${SDL2_INCLUDE_DIRS})
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
@@ -26,8 +26,6 @@ pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
     libswscale
     libavutil
 )
-PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
-find_package(SDL2 REQUIRED CONFIG)
 
 file(GLOB_RECURSE PROJECT_SOURCES src/*.cpp)
 file(GLOB_RECURSE PROJECT_HEADERS src/*.h)
@@ -45,10 +43,8 @@ target_link_libraries(CryliaPlayer PRIVATE
     Qt${QT_VERSION_MAJOR}::Svg
     Qt${QT_VERSION_MAJOR}::Core
     ${SDL2_LIBRARIES}
-    ${SDL_IMAGE_LIBRARY}
-    ${SDL_MIXER_LIBRARY}
+    ${SDL2_MIXER_LIBRARY}
     PkgConfig::LIBAV
-    ${SDL2}
 )
 
 install(TARGETS CryliaPlayer

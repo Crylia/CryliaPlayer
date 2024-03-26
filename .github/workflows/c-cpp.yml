@@ -23,10 +23,10 @@ jobs:
           
       - name: Install SDL2
         uses: libsdl-org/setup-sdl@v1
-        
-      - name: Install SDL image and mixer libraries
-        run: sudo apt-get install -y libsdl2-image-dev libsdl2-mixer-dev
-
+        with:
+          version: 3-head
+          version-sdl-mixer: 3-head
+          
       - name: Install FFmpeg  
         uses: AnimMouse/setup-ffmpeg@v1
         

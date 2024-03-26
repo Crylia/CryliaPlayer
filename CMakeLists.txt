@@ -27,6 +27,7 @@ pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
     libavutil
 )
 PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
+find_package(SDL2 REQUIRED CONFIG)
 
 file(GLOB_RECURSE PROJECT_SOURCES src/*.cpp)
 file(GLOB_RECURSE PROJECT_HEADERS src/*.h)
@@ -47,6 +48,7 @@ target_link_libraries(CryliaPlayer PRIVATE
     ${SDL_IMAGE_LIBRARY}
     ${SDL_MIXER_LIBRARY}
     PkgConfig::LIBAV
+    ${SDL2}
 )
 
 install(TARGETS CryliaPlayer

@@ -31,6 +31,9 @@ void Audio::StopMusic( ) {
 }
 
 void Audio::PlaySong(const std::string path) {
+  if (music)
+    Mix_FreeMusic(music);
+
   this->path = path;
 
   music = Mix_LoadMUS(path.c_str( ));
@@ -55,7 +58,7 @@ void Audio::ResumeMusic( ) {
 }
 
 bool Audio::IsMusicPlaying( ) {
-  return Mix_PlayingMusic( );
+  return (Mix_PlayingMusic( ) != 0);
 }
 
 std::string Audio::GetTitle( ) {

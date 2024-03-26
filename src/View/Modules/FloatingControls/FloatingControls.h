@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../core/audio/audio.h"
+#include "../../../Controller/MusicPlayer/MusicPlayer.h"
 #include "../../Tools/SvgToPixmap.hpp"
 
 #include <QFrame>
@@ -9,6 +9,18 @@
 #include <QObject>
 #include <filesystem>
 #include <QStackedLayout>
+#include <QGraphicsDropShadowEffect>
+#include <QGraphicsBlurEffect>
+#include <QLayout>
+#include <QWidget>
+#include <QLabel>
+#include <string>
+#include <QPixmap>
+#include <QtSvg>
+#include <QSvgRenderer>
+#include <QPainter>
+#include <QMainWindow>
+#include <QApplication>
 
 enum Repeat : short;
 
@@ -61,7 +73,7 @@ public:
     return this->playPause;
   }
 
-  FloatingControls(QWidget* parent = nullptr, std::filesystem::path path = std::filesystem::path( ));
+  FloatingControls(QWidget* parent = nullptr);
   ~FloatingControls( );
 
 signals:
@@ -82,6 +94,4 @@ private:
   QPixmap albumArt;
   int songPos;
   int songLength;
-
-  Audio& song;
 };

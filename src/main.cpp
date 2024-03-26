@@ -20,7 +20,7 @@ bool CheckValidFile(std::filesystem::path path) {
 
 int main(int argc, char* argv[]) {
     QApplication a(argc, argv);
-    MainWindow* w = argc > 1 && CheckValidFile(std::filesystem::path(argv[1])) ? new MainWindow(std::filesystem::path(argv[1])) : new MainWindow( );
+    MainWindow* w = argc > 1 && CheckValidFile(std::filesystem::path(argv[1])) ? new MainWindow(/*std::filesystem::path(argv[1])*/) : new MainWindow( );
     w->setMinimumHeight(600);
     w->show( );
 

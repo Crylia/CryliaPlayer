@@ -19,9 +19,4 @@ MainWindow::MainWindow(QWidget* parent)
   setupMainWindow( );
 }
 
-MainWindow::MainWindow(std::filesystem::path path, QWidget* parent)
-  : QMainWindow(parent), mainWidget(new MainWidget(path, this)) {
-  setupMainWindow( );
-}
-
 MainWindow::~MainWindow( ) { }

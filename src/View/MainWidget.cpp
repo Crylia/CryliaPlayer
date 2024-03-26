@@ -55,14 +55,4 @@ MainWidget::MainWidget(QWidget* parent)
   setupMainWidget( );
 }
 
-MainWidget::MainWidget(std::filesystem::path path, QWidget* parent)
-  : QWidget(parent),
-  pageNav(new PageNavModule(this)),
-  playlistNav(new PlaylistNavModule(this)),
-  playlistPage(new PlaylistPage(this)),
-  homePage(new HomePage(this)),
-  floatingControlls(new FloatingControls(this, path)) {
-  setupMainWidget( );
-}
-
 MainWidget::~MainWidget( ) { }

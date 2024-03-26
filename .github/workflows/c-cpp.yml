@@ -25,6 +25,10 @@ jobs:
         uses: libsdl-org/setup-sdl@v1
       - name: Install FFmpeg  
         uses: AnimMouse/setup-ffmpeg@v1
+      - name: Install FFmpeg dependencies
+        run: |
+          sudo apt-get install -y libavdevice-dev libavfilter-dev libavformat-dev libavcodec-dev libswresample-dev libswscale-dev libavutil-dev
+
 
       - name: Configure project
         run: |

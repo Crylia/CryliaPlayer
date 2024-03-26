@@ -1,6 +1,6 @@
 #include "audio.h"
 
-Audio::Audio(const std::string path) :path(path) {
+Audio::Audio( ) {
   if (SDL_Init(SDL_INIT_AUDIO) < 0) {
     std::cerr << "SDL initialization failed: " << SDL_GetError( ) << std::endl;
     return;
@@ -8,14 +8,6 @@ Audio::Audio(const std::string path) :path(path) {
 
   if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) == -1) {
     std::cerr << "SDL_mixer initialization failed: " << Mix_GetError( ) << std::endl;
-    SDL_Quit( );
-    return;
-  }
-
-  music = Mix_LoadMUS(path.c_str( ));
-  if (!music) {
-    std::cerr << "Failed to load MP3 file: " << Mix_GetError( ) << std::endl;
-    Mix_CloseAudio( );
     SDL_Quit( );
     return;
   }
@@ -31,6 +23,22 @@ void Audio::StartMusic( ) {
   if (Mix_PlayingMusic( ) == 0) {
     //TODO: Get the loop status from the FloatingControls widget and replace the 1
     Mix_PlayMusic(music, 1);
+  }
+}
+
+void Audio::StopMusic( ) {
+  Mix_HaltMusic( );
+}
+
+void Audio::PlaySong(const std::string path) {
+  this->path = path;
+
+  music = Mix_LoadMUS(path.c_str( ));
+  if (!music) {
+    std::cerr << "Failed to load MP3 file: " << Mix_GetError( ) << std::endl;
+    Mix_CloseAudio( );
+    SDL_Quit( );
+    return;
   }
 }
 

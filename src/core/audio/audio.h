@@ -14,16 +14,16 @@ extern "C" {
 
 class Audio {
 public:
-  static Audio& getInstance(const std::string path) {
-    static Audio instance(path);
+  static Audio& getInstance( ) {
+    static Audio instance;
     return instance;
   }
 private:
-  Audio(const std::string path);
+  Audio( );
 
-  const std::string path;
-  const std::string artist;
-  const std::string album;
+  std::string path;
+  std::string artist;
+  std::string album;
 
   Mix_Music* music;
 
@@ -43,6 +43,9 @@ public:
 
   QPixmap GetAlbumCover( );
 
+  void PlaySong(const std::string path);
+
+  void StopMusic( );
   void StartMusic( );
   void PauseMusic( );
   void ResumeMusic( );

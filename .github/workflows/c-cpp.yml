@@ -43,4 +43,4 @@ jobs:
           
       - name: Build project
         run: |
-          cmake --build . -j ${nproc}
+          make -j ${nproc}

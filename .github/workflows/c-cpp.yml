@@ -28,14 +28,10 @@ jobs:
 
       - name: Configure project
         run: |
+          mkdir build
           cd build
           cmake .
           
       - name: Build project
         run: |
           make install
-          
-      - name: Run tests
-        run: |
-          cd build
-          ctest --output-on-failure

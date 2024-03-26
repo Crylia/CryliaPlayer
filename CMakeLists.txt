@@ -18,7 +18,7 @@ if(NOT SDL2_FOUND)
     message(STATUS "SDL2 not found. Fallback to SDL3.")
 
     # Find SDL3 package
-    find_package(SDL3 REQUIRED)
+    find_package(SDL3 REQUIRED CONFIG)
     set(SDL_INCLUDE_DIRS ${SDL3_INCLUDE_DIRS})
     set(SDL_LIBRARIES ${SDL3_LIBRARIES})
 else()

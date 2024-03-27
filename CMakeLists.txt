@@ -28,7 +28,7 @@ else()
 endif()
 
 find_library(SDL_MIXER_LIBRARY NAMES SDL2_mixer SDL3_mixer)
-include_directories(${SDL2_INCLUDE_DIRS})
+include_directories(${SDL_INCLUDE_DIRS})
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET

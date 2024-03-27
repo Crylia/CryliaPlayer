@@ -28,70 +28,39 @@ class FloatingControls : public QFrame {
 
   Q_OBJECT
 
-    Q_PROPERTY(QString artist READ getArtist WRITE setArtist NOTIFY artistChanged)
-    Q_PROPERTY(QString songName READ getSongName WRITE setSongName NOTIFY songNameChanged)
-    Q_PROPERTY(int songPos READ getSongPos WRITE setSongPos NOTIFY songPosChanged)
 public:
-
-  QString getArtist( ) const {
-    return artist;
-  }
-  void setArtist(QString artist) {
-    if (this->artist == artist)
-      return;
-
-    this->artist = artist;
-    emit artistChanged(artist);
-  }
-
-  QString getSongName( ) const {
-    return songName;
-  }
-  void setSongName(QString songName) {
-    if (this->songName == songName)
-      return;
-
-    this->songName = songName;
-    emit songNameChanged(songName);
-  }
-
-  int getSongPos( ) const {
-    return songPos;
-  }
-  void setSongPos(int pos) {
-    if (this->songPos == pos)
-      return;
-    this->songPos = pos;
-    emit songPosChanged(pos);
-  }
-
-  void togglePlayPause( ) {
-    this->playPause = !this->playPause;
-  }
-
-  bool GetPlayPause( ) {
-    return this->playPause;
-  }
 
   FloatingControls(QWidget* parent = nullptr);
   ~FloatingControls( );
 
-signals:
-  void artistChanged(QString artist);
-  void songNameChanged(QString songName);
-  void songPosChanged(int songPos);
-
 private:
-  QString artist;
-  QString songName;
+  MusicPlayer& musicPlayer = MusicPlayer::getInstance( );
 
-  QString albumArtPath;
-  int volume;
+  QLabel* m_artist;
+  QLabel* m_title;
+  QLabel* m_album;
+  QLabel* m_albumArt;
+
+  QLabel* m_volume;
+  QLabel* m_volumeIcon;
+
+  QLabel* m_songPos;
+  QLabel* m_songDur;
+
+  QPushButton* m_playPause;
+  QPushButton* m_shuffle;
+  QPushButton* m_loop;
+  QPushButton* m_skipNext;
+  QPushButton* m_skipPrev;
+
+  QPushButton* m_fullscreen;
+
+  QSlider* m_songProgress;
+  QSlider* m_volumeSlider;
+
   bool fullscreen;
-  bool shuffle;
-  bool playPause;
   Repeat songRepeat;
-  QPixmap albumArt;
-  int songPos;
-  int songLength;
+
+private slots:
+  void setShuffle(bool shuffle);
 };

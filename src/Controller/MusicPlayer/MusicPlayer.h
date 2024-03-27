@@ -19,7 +19,7 @@ public:
   }
 
 private:
-  MusicPlayer( );
+  MusicPlayer( ) { }
 
   // 0 no shuffle, 1 shuffling
   int shuffle = 0;
@@ -96,7 +96,9 @@ public:
   Song* GetCurrentlyPlaying( );
 
   void SetShuffle(bool shuffle) { this->shuffle = shuffle; }
+  bool GetShuffle( ) { return shuffle; }
   void SetLoop(Loop loop) { this->loop = loop; }
+  Loop GetLoop( ) { return loop; }
 
   void AddSongToQueue(Song* song);
   void RemoveSongFromQueue(Song* song);

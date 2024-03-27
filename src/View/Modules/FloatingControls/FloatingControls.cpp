@@ -31,141 +31,149 @@ static QPushButton* makeSongControlButton(QString name, QSize size = QSize(36, 3
 
 FloatingControls::FloatingControls(QWidget* parent) :
   QFrame(parent),
-  volume(100),
-  albumArtPath("default.png"),
-  fullscreen(false), shuffle(false),
-  playPause(false),
-  songRepeat(NONE),
-  artist("Artist"),
-  songName("Song") {
+  fullscreen(false),
+  songRepeat(NONE) {
+
+#pragma region Frame setup
   this->setFixedHeight(100);
   this->setObjectName("main");
   this->setStyleSheet(R"(
     QFrame#main{
-      background-color:rgba(40, 40 ,40, 0.3);
+      background-color:rgba(40, 40 ,40, 0.8);
       border: 4px solid #414141;
       border-radius: 12px;
       margin: 0px 10px 10px 10px;
     }
   )");
   applyShadow(this);
+#pragma endregion
 
   /* Main Layout to store the Left Center and right controls */
   QHBoxLayout* mainLayout = new QHBoxLayout(this);
+
   /* Left side Icon, Artist and Song info */
   QHBoxLayout* leftLayout = new QHBoxLayout( );
   leftLayout->setSpacing(10);
   leftLayout->setAlignment(Qt::AlignLeft);
 
-  // Album Art
-  QLabel* albumArt = new QLabel( );
-  albumArt->setObjectName("albumArt");
-  albumArt->setAlignment(Qt::AlignCenter);
-  albumArt->setStyleSheet(R"(
-    QLabel#albumArt{
+#pragma region Album Art
+  m_albumArt = new QLabel( );
+  m_albumArt->setObjectName("m_albumArt");
+  m_albumArt->setAlignment(Qt::AlignCenter);
+  m_albumArt->setStyleSheet(R"(
+    QLabel#m_albumArt{
+      border: 0px;
+    }
+  )");
+  /* connect(m_albumArt, &QLabel::pixmapChanged, ()[ ] {
+    m_albumArt->setStyleSheet(R"(
+    QLabel#m_albumArt{
       border: 4px solid #414141;
       border-radius: 8px;
     }
   )");
+    }); */
+  leftLayout->addWidget(m_albumArt);
+#pragma endregion
 
-  //albumArt->setPixmap();
-  leftLayout->addWidget(albumArt);
-
-  // Artist and Song name layout
+#pragma region Artist and Song name layout
   QVBoxLayout* artistSongLayout = new QVBoxLayout( );
-  QLabel* artist = new QLabel("");
-  artist->setMinimumWidth(50);
-  connect(this, &FloatingControls::artistChanged, artist, &QLabel::setText);
-  artist->setObjectName("artist");
-  artist->setStyleSheet(R"(
+
+#pragma region Artist Label
+  m_artist = new QLabel( );
+  m_artist->setMinimumWidth(50);
+  m_artist->setObjectName("m_artist");
+  m_artist->setStyleSheet(R"(
     QLabel#artist{
       font-size: 16px;
       font-weight: bold;
       color: #E1E1E1;
     }
   )");
+#pragma endregion
 
-  QLabel* songName = new QLabel( );
-  songName->setMinimumWidth(50);
-  QFontMetrics metrics(songName->font( ));
-  songName->setText(metrics.elidedText("", Qt::ElideRight, songName->width( )));
-
-  connect(this, &FloatingControls::songNameChanged, songName, &QLabel::setText);
-  songName->setObjectName("title");
-  songName->setStyleSheet(R"(
+#pragma region Song Title
+  m_title = new QLabel( );
+  m_title->setMinimumWidth(50);
+  m_title->setObjectName("m_title");
+  m_title->setStyleSheet(R"(
     QLabel#songName{
       font-size: 14px;
       color: #D7D7D7;
     }
   )");
-  artistSongLayout->addWidget(artist);
-  artistSongLayout->addWidget(songName);
-  leftLayout->addLayout(artistSongLayout);
+#pragma endregion
 
-  /* Center layout to store the song controls and pos bar */
+  artistSongLayout->addWidget(m_artist);
+  artistSongLayout->addWidget(m_title);
+  leftLayout->addLayout(artistSongLayout);
+#pragma endregion
+
+#pragma region Center layout to store the song controls and pos bar
+
   QVBoxLayout* centerLayout = new QVBoxLayout( );
   centerLayout->setAlignment(Qt::AlignCenter);
-
-  mainLayout->setStretchFactor(leftLayout, 1);
-  mainLayout->setStretchFactor(centerLayout, 0.1);
 
   QHBoxLayout* songControlsLayout = new QHBoxLayout( );
   songControlsLayout->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
 
-  QString buttonNames[5] = { "shuffle", "prevSong", "play", "nextSong", "songRepeat" };
-  QString col = "#D7D7D7";
-  for (int i = 0; i < 5; i++) {
-    if (buttonNames[i] == "shuffle" || buttonNames[i] == "songRepeat")
-      col = "#CC79AB";
-    else
-      col = "#D7D7D7";
-    QPushButton* pb = makeSongControlButton(buttonNames[i], QSize(36, 36), col);
-    if (buttonNames[i] == "play") {
-
-    }
-    songControlsLayout->addWidget(pb);
-  }
-
+#pragma region Create Control Buttons
+  m_shuffle = makeSongControlButton("shuffle", QSize(36, 36), "#757575");
+  connect(m_shuffle, &QPushButton::clicked, [this]( ) {
+    setShuffle(!musicPlayer.GetShuffle( ));
+    });
+  songControlsLayout->addWidget(m_shuffle);
+  m_skipPrev = makeSongControlButton("prevSong", QSize(36, 36), "#D7D7D7");
+  songControlsLayout->addWidget(m_skipPrev);
+  m_playPause = makeSongControlButton("play", QSize(36, 36), "#D7D7D7");
+  songControlsLayout->addWidget(m_playPause);
+  m_skipNext = makeSongControlButton("nextSong", QSize(36, 36), "#D7D7D7");
+  songControlsLayout->addWidget(m_skipNext);
+  m_loop = makeSongControlButton("songRepeat", QSize(36, 36), "#757575");
+  songControlsLayout->addWidget(m_loop);
+#pragma endregion
 
   centerLayout->addLayout(songControlsLayout);
 
   QHBoxLayout* songScrollerLayout = new QHBoxLayout( );
   songScrollerLayout->setAlignment(Qt::AlignCenter | Qt::AlignTop);
 
-  // Song timestamp
-  QLabel* songTimestamp = new QLabel("00:00");
-  songTimestamp->setObjectName("songTimestamp");
-  songTimestamp->setStyleSheet(R"(
-    QLabel#songTimestamp{
+#pragma region Song Position
+  m_songPos = new QLabel("-:--");
+  m_songPos->setObjectName("m_songPos");
+  m_songPos->setStyleSheet(R"(
+    QLabel#m_songPos{
       font-size: 14px;
       color: #D7D7D7;
     }
   )");
-  songTimestamp->setAlignment(Qt::AlignRight);
+  m_songPos->setAlignment(Qt::AlignRight);
+#pragma endregion
 
-  // Song duration
-  QLabel* songDuration = new QLabel("00:00");
-  songDuration->setObjectName("songDuration");
-  songDuration->setStyleSheet(R"(
-    QLabel#songDuration{
+#pragma region Song Duration
+  m_songDur = new QLabel("-:--");
+  m_songDur->setObjectName("m_songDur");
+  m_songDur->setStyleSheet(R"(
+    QLabel#m_songDur{
       font-size: 14px;
       color: #D7D7D7;
     }
   )");
+#pragma endregion
 
-  // Song duration slider
-  QSlider* songDurationSlider = new QSlider(Qt::Horizontal);
-  songDurationSlider->setObjectName("songDurationSlider");
-  songDurationSlider->setRange(0, 100);
-  songDurationSlider->setValue(50);
-  songDurationSlider->setFixedHeight(28);
-  songDurationSlider->setStyleSheet(R"(
-    QSlider#songDurationSlider::groove:horizontal{
+#pragma region Song Progress Bar
+  m_songProgress = new QSlider(Qt::Horizontal);
+  m_songProgress->setObjectName("m_songProgress");
+  m_songProgress->setRange(0, 100);
+  m_songProgress->setValue(50);
+  m_songProgress->setFixedHeight(28);
+  m_songProgress->setStyleSheet(R"(
+    QSlider#m_songProgress::groove:horizontal{
       border-radius: 4px;
       height: 8px;
       background: #414141;
     }
-    QSlider#songDurationSlider::handle:horizontal{
+    QSlider#m_songProgress::handle:horizontal{
       background: #78AB70;
       border: 4px solid #414141;
       width: 14px;
@@ -174,69 +182,52 @@ FloatingControls::FloatingControls(QWidget* parent) :
       border-radius: 10px;
       padding: -8px 0;
     }
-    QSlider#songDurationSlider::sub-page:horizontal{
+    QSlider#m_songProgress::sub-page:horizontal{
       background: #78AB70;
       border-radius: 4px;
       height: 8px;
     }
   )");
-  songDurationSlider->setCursor(Qt::PointingHandCursor);
+  m_songProgress->setCursor(Qt::PointingHandCursor);
+#pragma endregion
 
-  connect(songDurationSlider, &QSlider::sliderReleased, [this, songDurationSlider]( ) {
-
-    });
-
-  songScrollerLayout->addWidget(songTimestamp);
-  songScrollerLayout->addWidget(songDurationSlider);
-  songScrollerLayout->addWidget(songDuration);
-
-  QTimer* timer = new QTimer(this);
-
-  connect(timer, &QTimer::timeout, this, [this, songTimestamp, songDurationSlider]( ) {
-    int sec = 0;
-
-    songTimestamp->setText(
-      QTime(
-        0,
-        sec / 60,
-        sec % 60
-      ).toString("mm:ss"));
-
-    songDurationSlider->setValue(sec);
-    //std::cout << songTimestamp->text( ).toStdString( ) << std::endl;
-    });
-  timer->start(1000);
+  songScrollerLayout->addWidget(m_songPos);
+  songScrollerLayout->addWidget(m_songProgress);
+  songScrollerLayout->addWidget(m_songDur);
 
   centerLayout->addLayout(songScrollerLayout);
 
-  /* Right side layout to store the volume and fullscreen controls */
+#pragma endregion
+
+#pragma region Right side layout to store the volume and fullscreen controls
   QHBoxLayout* rightLayout = new QHBoxLayout( );
   rightLayout->setAlignment(Qt::AlignRight);
 
-  //Volume icon
-  QLabel* volumeIcon = new QLabel( );
-  volumeIcon->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-  volumeIcon->setObjectName("volumeIcon");
-  volumeIcon->setPixmap(RenderSvg(":icons/volume-high.svg", 36, 36).scaled(QSize(24, 24), Qt::IgnoreAspectRatio));
+#pragma region Volume Icon
+  m_volumeIcon = new QLabel( );
+  m_volumeIcon->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+  m_volumeIcon->setObjectName("m_volumeIcon");
+  m_volumeIcon->setPixmap(RenderSvg(":icons/volume-high.svg", 36, 36).scaled(QSize(24, 24), Qt::IgnoreAspectRatio));
   QGraphicsColorizeEffect* colorize = new QGraphicsColorizeEffect( );
   colorize->setColor(QColor("#78AB70"));
   colorize->setStrength(1);
-  volumeIcon->setGraphicsEffect(colorize);
-  rightLayout->addWidget(volumeIcon);
+  m_volumeIcon->setGraphicsEffect(colorize);
+  rightLayout->addWidget(m_volumeIcon);
+#pragma endregion
 
-  //Volume slider
-  QSlider* VolumeSlider = new QSlider(Qt::Horizontal);
-  VolumeSlider->setObjectName("volumeSlider");
-  VolumeSlider->setRange(0, 128);
-  VolumeSlider->setValue(50);
-  VolumeSlider->setFixedHeight(28);
-  VolumeSlider->setStyleSheet(R"(
-    QSlider#volumeSlider::groove:horizontal{
+#pragma region Volume Slider
+  m_volumeSlider = new QSlider(Qt::Horizontal);
+  m_volumeSlider->setObjectName("m_volumeSlider");
+  m_volumeSlider->setRange(0, 128);
+  m_volumeSlider->setValue(50);
+  m_volumeSlider->setFixedHeight(28);
+  m_volumeSlider->setStyleSheet(R"(
+    QSlider#m_volumeSlider::groove:horizontal{
       border-radius: 4px;
       height: 8px;
       background: #414141;
     }
-    QSlider#volumeSlider::handle:horizontal{
+    QSlider#m_volumeSlider::handle:horizontal{
       background: #78AB70;
       border: 4px solid #414141;
       width: 14px;
@@ -245,33 +236,30 @@ FloatingControls::FloatingControls(QWidget* parent) :
       border-radius: 10px;
       padding: -8px 0;
     }
-    QSlider#volumeSlider::sub-page:horizontal{
+    QSlider#m_volumeSlider::sub-page:horizontal{
       background: #78AB70;
       border-radius: 4px;
       height: 8px;
     }
   )");
-  VolumeSlider->setCursor(Qt::PointingHandCursor);
+  m_volumeSlider->setCursor(Qt::PointingHandCursor);
+#pragma endregion
 
-  connect(VolumeSlider, &QSlider::valueChanged, [this, VolumeSlider]( ) {
-    });
+  rightLayout->addWidget(m_volumeSlider);
 
-  rightLayout->addWidget(VolumeSlider);
-
-  //Fullscreen button
-  QPushButton* FullscreenToggle = new QPushButton( );
-  FullscreenToggle->setObjectName("fullscreenToggle");
-  FullscreenToggle->setStyleSheet(R"(
-    QPushButton#fullscreenToggle{
+#pragma region Fullscreen Button
+  m_fullscreen = new QPushButton( );
+  m_fullscreen->setObjectName("m_fullscreen");
+  m_fullscreen->setStyleSheet(R"(
+    QPushButton#m_fullscreen{
       background: transparent;
       border: 4px solid #414141;
       border-radius: 8px;
-      margin-right: 14px;
     }
   )");
-  FullscreenToggle->setFixedSize(50, 36);
-  FullscreenToggle->setCursor(Qt::PointingHandCursor);
-  connect(FullscreenToggle, &QPushButton::clicked, [ ]( ) {
+  m_fullscreen->setFixedSize(36, 36);
+  m_fullscreen->setCursor(Qt::PointingHandCursor);
+  connect(m_fullscreen, &QPushButton::clicked, [ ]( ) {
     QMainWindow* mw = (QMainWindow*)QApplication::activeWindow( );
     if (mw->isFullScreen( ))
       mw->showNormal( );
@@ -279,7 +267,6 @@ FloatingControls::FloatingControls(QWidget* parent) :
       mw->showFullScreen( );
     });
   QLabel* FullscreenLabel = new QLabel( );
-  FullscreenLabel->setFixedSize(36, 24);
   FullscreenLabel->setObjectName("fullscreenLabel");
   FullscreenLabel->setPixmap(QPixmap(":icons/arrow-expand.svg").scaled(QSize(24, 24), Qt::IgnoreAspectRatio));
 
@@ -287,13 +274,19 @@ FloatingControls::FloatingControls(QWidget* parent) :
   FullscreenLayout->setAlignment(Qt::AlignCenter);
   FullscreenLayout->addWidget(FullscreenLabel);
 
-  QGraphicsColorizeEffect* colorize2 = new QGraphicsColorizeEffect( );
-  colorize2->setColor(QColor("#83BFC8"));
-  colorize2->setStrength(1);
-  FullscreenLabel->setGraphicsEffect(colorize2);
-  FullscreenToggle->setLayout(FullscreenLayout);
+  FullscreenLabel->setGraphicsEffect([ ]( ) {
+    QGraphicsColorizeEffect* color = new QGraphicsColorizeEffect( );
+    color->setColor(QColor("#83BFC8"));
+    color->setStrength(1);
+    return color;
+    }());
+  m_fullscreen->setLayout(FullscreenLayout);
+#pragma endregion
 
-  rightLayout->addWidget(FullscreenToggle);
+  rightLayout->addWidget(m_fullscreen);
+  rightLayout->addSpacing(14);
+
+#pragma endregion
 
   mainLayout->addLayout(leftLayout, 0);
   mainLayout->addLayout(centerLayout, 1);
@@ -306,3 +299,12 @@ FloatingControls::FloatingControls(QWidget* parent) :
 }
 
 FloatingControls::~FloatingControls( ) { }
+
+void FloatingControls::setShuffle(bool shuffle) {
+  musicPlayer.SetShuffle(shuffle);
+
+  QGraphicsColorizeEffect* colorize = new QGraphicsColorizeEffect( );
+  musicPlayer.GetShuffle( ) ? colorize->setColor(QColor("#CE93D8")) : colorize->setColor(QColor("#757575"));
+  colorize->setStrength(1);
+  m_shuffle->setGraphicsEffect(colorize);
+}

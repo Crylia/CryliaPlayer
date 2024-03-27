@@ -7,6 +7,7 @@ void MainWidget::setupMainWidget( ) {
   setLayout(ol);
 
   QVBoxLayout* vbox = new QVBoxLayout( );
+  floatingControlls = new FloatingControls(this);
   vbox->addWidget(floatingControlls, 0, Qt::AlignBottom);
 
   QHBoxLayout* hbox = new QHBoxLayout( );
@@ -50,8 +51,7 @@ MainWidget::MainWidget(QWidget* parent)
   pageNav(new PageNavModule(this)),
   playlistNav(new PlaylistNavModule(this)),
   playlistPage(new PlaylistPage(this)),
-  homePage(new HomePage(this)),
-  floatingControlls(new FloatingControls(this)) {
+  homePage(new HomePage(this)) {
   setupMainWidget( );
 }
 

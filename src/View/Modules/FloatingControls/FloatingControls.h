@@ -59,8 +59,15 @@ private:
   QSlider* m_volumeSlider;
 
   bool fullscreen;
-  Repeat songRepeat;
+
+signals:
+  void SongChanged( );
 
 private slots:
   void setShuffle(bool shuffle);
+  void setLoop(Loop loop);
+  void volumeChanged( );
+  void playPause( );
+
+  void setTitle( );
 };

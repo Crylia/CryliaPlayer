@@ -1,17 +1,15 @@
 #pragma once
 
+#include <QObject>
+#include <QPixmap>
+
 #include "../../core/audio/audio.h"
 #include "../../core/SongHistory/SongHistory.hpp"
 #include "../../core/SongQueue/SongQueue.h"
 #include "../../core/song/song.h"
 
-enum Loop {
-  None,
-  Once,
-  All
-};
-
-class MusicPlayer {
+class MusicPlayer : public QObject {
+  Q_OBJECT
 public:
   static MusicPlayer& getInstance( ) {
     static MusicPlayer instance;
@@ -19,7 +17,7 @@ public:
   }
 
 private:
-  MusicPlayer( ) : songQueue(new SongQueue( )) { }
+  MusicPlayer( ) : songQueue(new SongQueue( )), songHistory(new SongHistory<Song*>( )) { }
 
   // 0 no shuffle, 1 shuffling
   int shuffle = 0;
@@ -95,6 +93,18 @@ public:
    */
   Song* GetCurrentlyPlaying( );
 
+  /**
+   * @brief Will either play or pause a current song, if not song is active it returns false.
+   *
+   * @return true if currently playing
+   * @return false if paused or nothing playing
+   */
+  bool PlayPause( );
+
+  bool IsPlaying( );
+
+  QPixmap GetAlbumArt( );
+
   void SetShuffle(bool shuffle) {
     this->shuffle = shuffle;
     shuffleHandler( );
@@ -102,8 +112,13 @@ public:
   bool GetShuffle( ) { return shuffle; }
   void SetLoop(Loop loop) { this->loop = loop; }
   Loop GetLoop( ) { return loop; }
+  u_short GetVolume( ) { return audio.GetVolume( ); }
+  void SetVolume(u_short volume) { audio.SetVolume(volume); }
 
   void AddSongToQueue(Song* song);
   void RemoveSongFromQueue(Song* song);
   void MoveSongInQueue(Song* songToMove, Song* otherSong, bool beforeElseAfter);
+
+signals:
+  void SongChanged( );
 };

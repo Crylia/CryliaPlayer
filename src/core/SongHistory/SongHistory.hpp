@@ -10,10 +10,10 @@ private:
     Node* next;
   };
 
-  Node* topNode = nullptr;
+  Node* topNode;
 
 public:
-  SongHistory( ) { }
+  SongHistory( ) : topNode(nullptr) { }
   ~SongHistory( ) {
     while (!isEmpty( ))
       pop( );

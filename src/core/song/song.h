@@ -51,4 +51,8 @@ public:
 
   std::string GetPath( ) { return path; };
 
+  std::string GetTitle( ) { return title; }
+  std::string GetAlbum( ) { return album; }
+  std::string GetArtist( ) { return artist; }
+
 };

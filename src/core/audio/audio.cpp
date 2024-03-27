@@ -22,7 +22,7 @@ Audio::~Audio( ) {
 void Audio::StartMusic( ) {
   if (Mix_PlayingMusic( ) == 0) {
     //TODO: Get the loop status from the FloatingControls widget and replace the 1
-    Mix_PlayMusic(music, 1);
+    Mix_PlayMusic(music, this->loop);
   }
 }
 
@@ -43,6 +43,7 @@ void Audio::PlaySong(const std::string path) {
     SDL_Quit( );
     return;
   }
+  Mix_PlayMusic(music, this->loop);
 }
 
 void Audio::PauseMusic( ) {
@@ -55,6 +56,17 @@ void Audio::ResumeMusic( ) {
   if (Mix_PausedMusic( ) == 1) {
     Mix_ResumeMusic( );
   }
+}
+
+void Audio::TogglePlayPause( ) {
+  if (IsMusicPaused( ))
+    ResumeMusic( );
+  else
+    PauseMusic( );
+}
+
+bool Audio::IsMusicPaused( ) {
+  return (Mix_PausedMusic( ) == 1);
 }
 
 bool Audio::IsMusicPlaying( ) {
@@ -112,7 +124,7 @@ QPixmap Audio::GetAlbumCover( ) {
 }
 
 int Audio::GetVolume( ) {
-  return Mix_GetMusicVolume(music);
+  return Mix_VolumeMusic(-1);
 }
 
 void Audio::SetVolume(int vol) {

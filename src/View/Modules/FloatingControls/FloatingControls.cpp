@@ -2,13 +2,6 @@
 
 #include "FloatingControls.h"
 
-
-enum Repeat : short {
-  ALL,
-  CURRENT,
-  NONE
-};
-
 static QPushButton* makeSongControlButton(QString name, QSize size = QSize(36, 36), QString color = "#D7D7D7") {
   QPushButton* button = new QPushButton( );
   button->setObjectName(name);
@@ -31,8 +24,7 @@ static QPushButton* makeSongControlButton(QString name, QSize size = QSize(36, 3
 
 FloatingControls::FloatingControls(QWidget* parent) :
   QFrame(parent),
-  fullscreen(false),
-  songRepeat(NONE) {
+  fullscreen(false) {
 
 #pragma region Frame setup
   this->setFixedHeight(100);
@@ -102,6 +94,7 @@ FloatingControls::FloatingControls(QWidget* parent) :
       color: #D7D7D7;
     }
   )");
+  connect(&musicPlayer, &MusicPlayer::SongChanged, this, &FloatingControls::setTitle);
 #pragma endregion
 
   artistSongLayout->addWidget(m_artist);
@@ -126,10 +119,24 @@ FloatingControls::FloatingControls(QWidget* parent) :
   m_skipPrev = makeSongControlButton("prevSong", QSize(36, 36), "#D7D7D7");
   songControlsLayout->addWidget(m_skipPrev);
   m_playPause = makeSongControlButton("play", QSize(36, 36), "#D7D7D7");
+  connect(m_playPause, &QPushButton::clicked, this, &FloatingControls::playPause);
   songControlsLayout->addWidget(m_playPause);
   m_skipNext = makeSongControlButton("nextSong", QSize(36, 36), "#D7D7D7");
   songControlsLayout->addWidget(m_skipNext);
   m_loop = makeSongControlButton("songRepeat", QSize(36, 36), "#757575");
+  connect(m_loop, &QPushButton::clicked, [this]( ) {
+    switch (musicPlayer.GetLoop( )) {
+    case None:
+      setLoop(All);
+      break;
+    case All:
+      setLoop(Once);
+      break;
+    case Once:
+      setLoop(None);
+      break;
+    }
+    });
   songControlsLayout->addWidget(m_loop);
 #pragma endregion
 
@@ -207,9 +214,9 @@ FloatingControls::FloatingControls(QWidget* parent) :
   m_volumeIcon = new QLabel( );
   m_volumeIcon->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
   m_volumeIcon->setObjectName("m_volumeIcon");
-  m_volumeIcon->setPixmap(RenderSvg(":icons/volume-high.svg", 36, 36).scaled(QSize(24, 24), Qt::IgnoreAspectRatio));
+  m_volumeIcon->setPixmap(RenderSvg(":icons/volume-medium.svg", 24, 24));
   QGraphicsColorizeEffect* colorize = new QGraphicsColorizeEffect( );
-  colorize->setColor(QColor("#78AB70"));
+  colorize->setColor(QColor("#FFF59D"));
   colorize->setStrength(1);
   m_volumeIcon->setGraphicsEffect(colorize);
   rightLayout->addWidget(m_volumeIcon);
@@ -228,7 +235,7 @@ FloatingControls::FloatingControls(QWidget* parent) :
       background: #414141;
     }
     QSlider#m_volumeSlider::handle:horizontal{
-      background: #78AB70;
+      background: #FFF59D;
       border: 4px solid #414141;
       width: 14px;
       height: 14px;
@@ -237,12 +244,13 @@ FloatingControls::FloatingControls(QWidget* parent) :
       padding: -8px 0;
     }
     QSlider#m_volumeSlider::sub-page:horizontal{
-      background: #78AB70;
+      background: #FFF59D;
       border-radius: 4px;
       height: 8px;
     }
   )");
   m_volumeSlider->setCursor(Qt::PointingHandCursor);
+  connect(m_volumeSlider, &QSlider::valueChanged, this, &FloatingControls::volumeChanged);
 #pragma endregion
 
   rightLayout->addWidget(m_volumeSlider);
@@ -304,7 +312,120 @@ void FloatingControls::setShuffle(bool shuffle) {
   musicPlayer.SetShuffle(shuffle);
 
   QGraphicsColorizeEffect* colorize = new QGraphicsColorizeEffect( );
+  // Get the value to make sure it actually changed
   musicPlayer.GetShuffle( ) ? colorize->setColor(QColor("#CE93D8")) : colorize->setColor(QColor("#757575"));
   colorize->setStrength(1);
   m_shuffle->setGraphicsEffect(colorize);
+}
+
+void FloatingControls::volumeChanged( ) {
+  int value = m_volumeSlider->value( );
+  musicPlayer.SetVolume(value);
+
+  // We know MIX_MAX_VOLUME is always 0-128 so no need to calculate anything
+  if (value == 0) {
+    m_volumeIcon->setPixmap(RenderSvg(":icons/volume-off.svg", 24, 24));
+    QGraphicsColorizeEffect* colorize = new QGraphicsColorizeEffect( );
+    colorize->setColor(QColor("#FFF59D"));
+    colorize->setStrength(1);
+    m_volumeIcon->setGraphicsEffect(colorize);
+  }
+  else if (value > 0 && value < 42) {
+    m_volumeIcon->setPixmap(RenderSvg(":icons/volume-low.svg", 24, 24));
+    QGraphicsColorizeEffect* colorize = new QGraphicsColorizeEffect( );
+    colorize->setColor(QColor("#FFF59D"));
+    colorize->setStrength(1);
+    m_volumeIcon->setGraphicsEffect(colorize);
+  }
+  else if (value >= 42 && value < 84) {
+    m_volumeIcon->setPixmap(RenderSvg(":icons/volume-medium.svg", 24, 24));
+    QGraphicsColorizeEffect* colorize = new QGraphicsColorizeEffect( );
+    colorize->setColor(QColor("#FFF59D"));
+    colorize->setStrength(1);
+    m_volumeIcon->setGraphicsEffect(colorize);
+  }
+  else if (value >= 84 && value < 128) {
+    m_volumeIcon->setPixmap(RenderSvg(":icons/volume-high.svg", 24, 24));
+    QGraphicsColorizeEffect* colorize = new QGraphicsColorizeEffect( );
+    colorize->setColor(QColor("#FFF59D"));
+    colorize->setStrength(1);
+    m_volumeIcon->setGraphicsEffect(colorize);
+  }
+}
+
+void FloatingControls::setLoop(Loop loop) {
+  musicPlayer.SetLoop(loop);
+
+  QGraphicsColorizeEffect* colorize = new QGraphicsColorizeEffect( );
+  // Get the value to make sure it actually changed
+  switch (musicPlayer.GetLoop( )) {
+  case None:
+    m_loop->setIcon(RenderSvg(":icons/songRepeat.svg", 36, 36));
+    colorize->setColor(QColor("#757575"));
+    colorize->setStrength(1);
+    m_loop->setGraphicsEffect(colorize);
+    break;
+  case All:
+    m_loop->setIcon(RenderSvg(":icons/songRepeat.svg", 36, 36));
+    colorize->setColor(QColor("#CE93D8"));
+    colorize->setStrength(1);
+    m_loop->setGraphicsEffect(colorize);
+    break;
+  case Once:
+    m_loop->setIcon(RenderSvg(":icons/repeat-once.svg", 36, 36));
+    colorize->setColor(QColor("#CE93D8"));
+    colorize->setStrength(1);
+    m_loop->setGraphicsEffect(colorize);
+    break;
+  }
+}
+
+void FloatingControls::playPause( ) {
+  //! TESTING ONLY
+  musicPlayer.PlaySong(new Song(
+    "Check This Out",
+    "",
+    "2Complex",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "/home/crylia/Musik/Dubstep EDM Electro/2Complex - Check This Out.mp3",
+    0,
+    ""
+  ));
+
+  bool playing = musicPlayer.IsPlaying( );
+
+  QGraphicsColorizeEffect* colorize = new QGraphicsColorizeEffect( );
+  playing ?
+    m_playPause->setIcon(RenderSvg(":icons/play.svg", 36, 36)) :
+    m_playPause->setIcon(RenderSvg(":icons/pause.svg", 36, 36));
+  colorize->setColor(QColor("#D7D7D7"));
+  colorize->setStrength(1);
+  m_playPause->setGraphicsEffect(colorize);
+}
+
+void FloatingControls::setTitle( ) {
+  std::cout << musicPlayer.GetCurrentlyPlaying( )->GetTitle( ) << std::endl;
+  m_title->setText(QString::fromStdString(musicPlayer.GetCurrentlyPlaying( )->GetTitle( )));
+  m_artist->setText(QString::fromStdString(musicPlayer.GetCurrentlyPlaying( )->GetArtist( )));
+
+  m_albumArt->setPixmap(musicPlayer.GetAlbumArt( ));
+  QRect targetRect;
+  if (m_albumArt->pixmap( ).width( ) > m_albumArt->pixmap( ).height( )) {
+    int sideLength = m_albumArt->pixmap( ).height( );
+    targetRect = QRect((m_albumArt->pixmap( ).width( ) - sideLength) / 2, 0, sideLength, sideLength);
+  }
+  else {
+    int sideLength = m_albumArt->pixmap( ).width( );
+    targetRect = QRect(0, (m_albumArt->pixmap( ).height( ) - sideLength) / 2, sideLength, sideLength);
+  }
+
+  m_albumArt->setPixmap(m_albumArt->pixmap( ).copy(targetRect).scaled(QSize(64, 64), Qt::KeepAspectRatio));
 }

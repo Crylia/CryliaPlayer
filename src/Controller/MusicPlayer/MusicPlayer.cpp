@@ -3,10 +3,12 @@
 MusicPlayer::~MusicPlayer( ) { }
 
 void MusicPlayer::PlaySong(Song* song) {
-  songHistory->push(songQueue->Top( ));
   songQueue->SetTop(song);
+  songHistory->push(songQueue->Top( ));
 
   audio.PlaySong(songQueue->Top( )->GetPath( ));
+
+  emit SongChanged( );
 }
 
 void MusicPlayer::NextSong( ) {
@@ -19,6 +21,7 @@ void MusicPlayer::NextSong( ) {
   songQueue->Next( );
 
   audio.PlaySong(songQueue->Top( )->GetPath( ));
+  emit SongChanged( );
 }
 
 void MusicPlayer::NextSong(Song* song, bool isPrioQueue) {
@@ -31,6 +34,7 @@ void MusicPlayer::NextSong(Song* song, bool isPrioQueue) {
   songQueue->JumpToSong(song, isPrioQueue);
 
   audio.PlaySong(songQueue->Top( )->GetPath( ));
+  emit SongChanged( );
 }
 
 void MusicPlayer::PreviousSong( ) {
@@ -41,6 +45,7 @@ void MusicPlayer::PreviousSong( ) {
   songHistory->pop( );
 
   audio.PlaySong(songQueue->Top( )->GetPath( ));
+  emit SongChanged( );
 }
 
 void MusicPlayer::SkipToTimestamp(unsigned const int& skipTo) {
@@ -76,4 +81,28 @@ void MusicPlayer::shuffleHandler( ) {
 
 void MusicPlayer::setQueueLoop( ) {
   loop == All ? songQueue->LinkQueue(true) : songQueue->LinkQueue(false);
+}
+
+bool MusicPlayer::IsPlaying( ) {
+  return audio.IsMusicPaused( );
+}
+
+QPixmap MusicPlayer::GetAlbumArt( ) {
+  return audio.GetAlbumCover( );
+}
+
+/**
+ * @brief Resumes or Plays the music depending on the current state, if no music is playing
+ * it returns false
+ *
+ * @return true Music is Playing
+ * @return false Music is Paused or nothing is playing
+ */
+bool MusicPlayer::PlayPause( ) {
+  if (!audio.IsMusicPlaying( )) return false;
+
+  audio.TogglePlayPause( );
+
+  emit SongChanged( );
+  return !audio.IsMusicPaused( );
 }

@@ -12,6 +12,12 @@ extern "C" {
 
 #include <iostream>
 
+enum Loop {
+  None,
+  All,
+  Once
+};
+
 class Audio {
 public:
   static Audio& getInstance( ) {
@@ -24,6 +30,7 @@ private:
   std::string path;
   std::string artist;
   std::string album;
+  Loop loop;
 
   Mix_Music* music;
 
@@ -50,7 +57,8 @@ public:
   void PauseMusic( );
   void ResumeMusic( );
   bool IsMusicPlaying( );
-
+  void TogglePlayPause( );
+  bool IsMusicPaused( );
   void SetVolume(int vol);
   int GetVolume( );
 };

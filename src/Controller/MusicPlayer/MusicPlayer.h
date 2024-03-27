@@ -19,7 +19,7 @@ public:
   }
 
 private:
-  MusicPlayer( ) { }
+  MusicPlayer( ) : songQueue(new SongQueue( )) { }
 
   // 0 no shuffle, 1 shuffling
   int shuffle = 0;
@@ -36,7 +36,7 @@ private:
 
   Audio& audio = Audio::getInstance( );
 
-  void shuffleQueue( );
+  void shuffleHandler( );
   void setQueueLoop( );
 
 public:
@@ -95,7 +95,10 @@ public:
    */
   Song* GetCurrentlyPlaying( );
 
-  void SetShuffle(bool shuffle) { this->shuffle = shuffle; }
+  void SetShuffle(bool shuffle) {
+    this->shuffle = shuffle;
+    shuffleHandler( );
+  }
   bool GetShuffle( ) { return shuffle; }
   void SetLoop(Loop loop) { this->loop = loop; }
   Loop GetLoop( ) { return loop; }

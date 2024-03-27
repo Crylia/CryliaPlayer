@@ -22,8 +22,8 @@ private:
   // Variable to either link or unlink the list
   bool isLinked;
 public:
-  ConditionalCircularLinkedList( );
-  ConditionalCircularLinkedList(bool isLinked) : head(nullptr), isLinked(isLinked) { }
+  ConditionalCircularLinkedList( ) : head(nullptr), isLinked(false), current(nullptr) { }
+  ConditionalCircularLinkedList(bool isLinked) : head(nullptr), isLinked(isLinked), current(nullptr) { }
 
   /**
    * @brief Append a new song to the queue

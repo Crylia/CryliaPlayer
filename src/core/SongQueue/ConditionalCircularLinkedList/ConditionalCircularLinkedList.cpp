@@ -1,7 +1,5 @@
 #include "ConditionalCircularLinkedList.h"
 
-ConditionalCircularLinkedList::ConditionalCircularLinkedList( ) { }
-
 void ConditionalCircularLinkedList::Append(Song* song) {
   Node* newNode = new Node(song);
   if (head == nullptr) {

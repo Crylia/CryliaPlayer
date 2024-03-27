@@ -70,7 +70,7 @@ void MusicPlayer::MoveSongInQueue(Song* songToMove, Song* otherSong, bool before
   songQueue->MoveSongInPriorityQueue(songToMove, otherSong, beforeElseAfter);
 }
 
-void MusicPlayer::shuffleQueue( ) {
+void MusicPlayer::shuffleHandler( ) {
   shuffle ? songQueue->ShufflePlaylist( ) : songQueue->RestorePlaylist( );
 }
 

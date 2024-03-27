@@ -1,7 +1,7 @@
 #include "SongQueue.h"
 
 SongQueue::SongQueue( ) {
-  queue = new ConditionalCircularLinkedList( );
+  queue = new ConditionalCircularLinkedList(false);
 
   // Its never going to be linked, I'm just too lazy to make a new implementation thats almost the same
   priorityQueue = new ConditionalCircularLinkedList(false);
@@ -77,6 +77,7 @@ void SongQueue::MoveSongInPriorityQueue(Song* songToMove, Song* otherSong, bool 
 }
 
 void SongQueue::ShufflePlaylist( ) {
+  if (queue && queue->IsEmpty( )) return;
   //First backup the original list state
   queue_original = new ConditionalCircularLinkedList(queue);
 

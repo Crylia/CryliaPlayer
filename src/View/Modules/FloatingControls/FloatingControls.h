@@ -58,6 +58,9 @@ private:
   QSlider* m_songProgress;
   QSlider* m_volumeSlider;
 
+  // Timer to update the song's duration and slider
+  QTimer* m_progressUpdateTimer;
+
   bool fullscreen;
 
 signals:
@@ -70,4 +73,5 @@ private slots:
   void playPause( );
 
   void setTitle( );
+  void setSongDur( );
 };

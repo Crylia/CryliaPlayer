@@ -166,6 +166,7 @@ FloatingControls::FloatingControls(QWidget* parent) :
       color: #D7D7D7;
     }
   )");
+  connect(&musicPlayer, &MusicPlayer::SongChanged, this, &FloatingControls::setSongDur);
 #pragma endregion
 
 #pragma region Song Progress Bar
@@ -304,6 +305,27 @@ FloatingControls::FloatingControls(QWidget* parent) :
   mainLayout->setSpacing(10);
 
   this->setLayout(mainLayout);
+
+  m_progressUpdateTimer = new QTimer( );
+  connect(m_progressUpdateTimer, &QTimer::timeout, this, [this]( ) {
+    if (!musicPlayer.IsActive( )) {
+      m_songProgress->setValue(0);
+      m_songPos->setText("-:--");
+      return;
+    }
+
+    u_short sec = musicPlayer.GetSongProgression( );
+
+    m_songPos->setText(
+      QTime(
+        0,
+        sec / 60,
+        sec % 60
+      ).toString("mm:ss"));
+
+    m_songProgress->setValue(sec);
+    });
+  m_progressUpdateTimer->start(1000);
 }
 
 FloatingControls::~FloatingControls( ) { }
@@ -412,7 +434,6 @@ void FloatingControls::playPause( ) {
 }
 
 void FloatingControls::setTitle( ) {
-  std::cout << musicPlayer.GetCurrentlyPlaying( )->GetTitle( ) << std::endl;
   m_title->setText(QString::fromStdString(musicPlayer.GetCurrentlyPlaying( )->GetTitle( )));
   m_artist->setText(QString::fromStdString(musicPlayer.GetCurrentlyPlaying( )->GetArtist( )));
 
@@ -428,4 +449,15 @@ void FloatingControls::setTitle( ) {
   }
 
   m_albumArt->setPixmap(m_albumArt->pixmap( ).copy(targetRect).scaled(QSize(64, 64), Qt::KeepAspectRatio));
+}
+
+void FloatingControls::setSongDur( ) {
+  u_short sec = musicPlayer.GetSongDuration( );
+
+  m_songDur->setText(
+    QTime(
+      0,
+      sec / 60,
+      sec % 60
+    ).toString("mm:ss"));
 }

@@ -109,11 +109,13 @@ public:
     this->shuffle = shuffle;
     shuffleHandler( );
   }
+  bool IsActive( );
   bool GetShuffle( ) { return shuffle; }
   void SetLoop(Loop loop) { this->loop = loop; }
   Loop GetLoop( ) { return loop; }
   u_short GetVolume( ) { return audio.GetVolume( ); }
   void SetVolume(u_short volume) { audio.SetVolume(volume); }
+  int GetSongDuration( ) { return audio.GetMusicDuration( ); }
 
   void AddSongToQueue(Song* song);
   void RemoveSongFromQueue(Song* song);

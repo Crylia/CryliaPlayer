@@ -87,6 +87,10 @@ bool MusicPlayer::IsPlaying( ) {
   return audio.IsMusicPaused( );
 }
 
+bool MusicPlayer::IsActive( ) {
+  return audio.IsMusicPlaying( );
+}
+
 QPixmap MusicPlayer::GetAlbumArt( ) {
   return audio.GetAlbumCover( );
 }

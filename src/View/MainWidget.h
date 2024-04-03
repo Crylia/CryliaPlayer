@@ -11,6 +11,8 @@
 #include "Modules/PlaylistNavModule/PlaylistNavModule.h"
 #include "Pages/Playlist/PlaylistPage.h"
 #include "Pages/Home/HomePage.h"
+#include "Pages/LocalFolder/LocalFolderPage.h"
+#include "../Controller/PageManager/PageManager.h"
 
 class MainWidget : public QWidget {
   Q_OBJECT
@@ -21,14 +23,17 @@ private:
 
   PlaylistPage* playlistPage;
   HomePage* homePage;
+  LocalFolderPage* localFolderPage;
 
   FloatingControls* floatingControlls;
+
+  PageManager& pageManager = PageManager::getInstance( );
 
   void setupMainWidget( );
 
 public:
   MainWidget(QWidget* parent = nullptr);
-  MainWidget(std::filesystem::path path, QWidget* parent = nullptr);
+  //MainWidget(std::filesystem::path path, QWidget* parent = nullptr);
   ~MainWidget( );
 
 private slots:

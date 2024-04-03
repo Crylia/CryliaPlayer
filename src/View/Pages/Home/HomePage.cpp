@@ -1,7 +1,6 @@
 #include "HomePage.h"
 
-HomePage::HomePage(QWidget* parent)
-  : QFrame(parent) {
+HomePage::HomePage(QWidget* parent) : Page(parent) {
 
   setStyleSheet(R"(
       background-color: #28FF28;

@@ -3,18 +3,27 @@
 #include <QWidget>
 #include <QVector>
 #include <QFrame>
+
 #include "../../Widgets/PageNavigator/PageNavigator.h"
 #include "../../Tools/SvgToPixmap.hpp"
+#include "../../Pages/Home/HomePage.h"
+#include "../../Pages/Playlist/PlaylistPage.h"
+#include "../../Pages/LocalFolder/LocalFolderPage.h"
+#include "../../../Controller/PageManager/PageManager.h"
 
 class PageNavModule : public QFrame {
   Q_OBJECT
 private:
-  QVector<PageNavigator> pages;
+  QVector<PageNavigator*>* pages;
+
+  PageNavigator* home;
+  PageNavigator* localFiles;
+  PageNavigator* playlist;
 
 public:
   PageNavModule(QWidget* parent = nullptr);
   ~PageNavModule( );
 
 signals:
-  void SelectChanged(PageNavigator* pn);
+  void SelectChanged(Page* page);
 };

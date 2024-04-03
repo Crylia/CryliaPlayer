@@ -1,6 +1,5 @@
 #include "PageNavigator.h"
-#include "SelectHandler.hpp"
-#include "../../Tools/SvgToPixmap.hpp"
+#include <iostream>
 
 class SquareIcon : public QLabel {
 public:
@@ -11,8 +10,8 @@ public:
   }
 };
 
-PageNavigator::PageNavigator(QString text, QString icon, QString color, QWidget* parent)
-  :m_text(new QLabel(text)), m_icon(new SquareIcon( )), m_color(color), m_iconPath(icon) {
+PageNavigator::PageNavigator(Page* page, QString text, QString icon, QString color, QWidget* parent)
+  :page(page), m_text(new QLabel(text)), m_icon(new SquareIcon( )), m_color(color), m_iconPath(icon) {
 
 
   QSvgRenderer renderer(icon);
@@ -40,6 +39,8 @@ PageNavigator::PageNavigator(QString text, QString icon, QString color, QWidget*
       }
     )");
 
+  setCursor(Qt::PointingHandCursor);
+
   QFont font = m_text->font( );
   font.setPointSize(16);
   font.setWeight(QFont::Bold);
@@ -48,21 +49,9 @@ PageNavigator::PageNavigator(QString text, QString icon, QString color, QWidget*
   QHBoxLayout* layout = new QHBoxLayout(this);
   layout->addWidget(m_icon, 0, Qt::AlignLeft);
   layout->addWidget(m_text, 1, Qt::AlignLeft);
-
-  connect(this, &QPushButton::clicked, [this, parent]( ) {
-    SelectHandler* sh = SelectHandler::GetInstance( );
-
-    sh->setSelected(this);
-    emit SelectedChanged(this);
+  connect(this, &QPushButton::clicked, [this]( ) {
+    emit SelectedChanged(this->page);
     });
-
-  // Little hacky but thats how home is the default
-  if (text == "Home") {
-    SelectHandler* sh = SelectHandler::GetInstance( );
-
-    sh->setSelected(this);
-    emit SelectedChanged(this);
-  }
 }
 
 void PageNavigator::unselect( ) {

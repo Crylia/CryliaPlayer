@@ -1,9 +1,10 @@
 #include "PageNavModule.h"
 
-#include <QWidget>
-#include <QFrame>
-
-PageNavModule::PageNavModule(QWidget* parent) :QFrame(parent) {
+PageNavModule::PageNavModule(QWidget* parent) :
+  QFrame(parent),
+  home(new PageNavigator(new HomePage( ), "Home", ":icons/home-outline.svg", "#81D4FA")),
+  localFiles(new PageNavigator(new LocalFolderPage( ), "Local Files", ":icons/folder-outline.svg", "#FFE082")),
+  playlist(new PageNavigator(new PlaylistPage( ), "Playlist", ":icons/magnify.svg", "#CE93D8")) {
 
   this->setStyleSheet(R"(
     background-color: #282828;
@@ -16,17 +17,29 @@ PageNavModule::PageNavModule(QWidget* parent) :QFrame(parent) {
 
   QVBoxLayout* layout = new QVBoxLayout(this);
 
-  PageNavigator* home = new PageNavigator("Home", ":icons/home-outline.svg", "#81D4FA");
-  PageNavigator* localFiles = new PageNavigator("Local Files", ":icons/folder-outline.svg", "#FFE082");
-  PageNavigator* playlist = new PageNavigator("Playlist", ":icons/magnify.svg", "#CE93D8");
-
   layout->addWidget(home);
   layout->addWidget(localFiles);
   layout->addWidget(playlist);
 
-  connect(home, &PageNavigator::SelectedChanged, this, &PageNavModule::SelectChanged);
-  connect(localFiles, &PageNavigator::SelectedChanged, this, &PageNavModule::SelectChanged);
-  connect(playlist, &PageNavigator::SelectedChanged, this, &PageNavModule::SelectChanged);
+  PageManager& pageManager = PageManager::getInstance( );
+  connect(home, &PageNavigator::SelectedChanged, [&pageManager, this](Page* page) {
+    home->select( );
+    localFiles->unselect( );
+    playlist->unselect( );
+    emit pageManager.ActivePageChanged(page);
+    });
+  connect(localFiles, &PageNavigator::SelectedChanged, [&pageManager, this](Page* page) {
+    home->unselect( );
+    localFiles->select( );
+    playlist->unselect( );
+    emit pageManager.ActivePageChanged(page);
+    });
+  connect(playlist, &PageNavigator::SelectedChanged, [&pageManager, this](Page* page) {
+    home->unselect( );
+    localFiles->unselect( );
+    playlist->select( );
+    emit pageManager.ActivePageChanged(page);
+    });
 }
 
 PageNavModule::~PageNavModule( ) { }

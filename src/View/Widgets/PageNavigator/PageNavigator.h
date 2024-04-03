@@ -8,6 +8,9 @@
 #include <QColor>
 #include <QGraphicsColorizeEffect>
 
+#include "../../Tools/SvgToPixmap.hpp"
+#include "../../Pages/Page.h"
+
 class PageNavigator :public QPushButton {
   Q_OBJECT
 private:
@@ -15,9 +18,10 @@ private:
   QLabel* m_icon;
   QString m_iconPath;
   QString m_color;
+  Page* page;
 
 public:
-  PageNavigator(QString text, QString icon, QString color, QWidget* parent = nullptr);
+  PageNavigator(Page* page, QString text, QString icon, QString color, QWidget* parent = nullptr);
 
   void unselect( );
   void select( );
@@ -25,5 +29,5 @@ public:
   QString GetText( );
 
 signals:
-  void SelectedChanged(PageNavigator* pn);
+  void SelectedChanged(Page* page);
 };

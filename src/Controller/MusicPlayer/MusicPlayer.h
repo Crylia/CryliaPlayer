@@ -8,6 +8,7 @@
 #include "../../core/SongQueue/SongQueue.h"
 #include "../../core/song/song.h"
 
+
 class MusicPlayer : public QObject {
   Q_OBJECT
 public:
@@ -17,7 +18,8 @@ public:
   }
 
 private:
-  MusicPlayer( ) : songQueue(new SongQueue( )), songHistory(new SongHistory<Song*>( )) { }
+  MusicPlayer( ) :
+    songQueue(new SongQueue( )), songHistory(new SongHistory<Song*>( )) { }
 
   // 0 no shuffle, 1 shuffling
   int shuffle = 0;

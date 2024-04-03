@@ -28,6 +28,7 @@ PageNavigator::PageNavigator(Page* page, QString text, QString icon, QString col
   m_icon->setPixmap(pixmap);
 
   m_icon->setObjectName("icon");
+  m_text->setObjectName("Text");
 
   setObjectName("PageNavigator");
   setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -35,6 +36,8 @@ PageNavigator::PageNavigator(Page* page, QString text, QString icon, QString col
       #PageNavigator{
         border: 4px solid #414141;
         border-radius: 6px;
+      }
+      #Text{
         color: #E0E0E0;
       }
     )");

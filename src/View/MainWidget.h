@@ -12,6 +12,7 @@
 #include "Pages/Playlist/PlaylistPage.h"
 #include "Pages/Home/HomePage.h"
 #include "Pages/LocalFolder/LocalFolderPage.h"
+#include "Pages/Settings/SettingsPage.h"
 #include "../Controller/PageManager/PageManager.h"
 
 class MainWidget : public QWidget {
@@ -24,6 +25,7 @@ private:
   PlaylistPage* playlistPage;
   HomePage* homePage;
   LocalFolderPage* localFolderPage;
+  SettingsPage* settingsPage;
 
   FloatingControls* floatingControlls;
 

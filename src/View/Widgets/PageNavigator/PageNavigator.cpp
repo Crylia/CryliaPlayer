@@ -55,6 +55,9 @@ PageNavigator::PageNavigator(Page* page, QString text, QString icon, QString col
   connect(this, &QPushButton::clicked, [this]( ) {
     emit SelectedChanged(this->page);
     });
+
+  this->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+
 }
 
 void PageNavigator::unselect( ) {
@@ -63,6 +66,9 @@ void PageNavigator::unselect( ) {
       border: 4px solid #414141;
       border-radius: 6px;
     }
+    #Text{
+        color: #E0E0E0;
+      }
   )");
 }
 
@@ -72,6 +78,9 @@ void PageNavigator::select( ) {
       border: 4px solid )" + m_color + R"(;
       border-radius: 6px;
     }
+    #Text{
+        color: #E0E0E0;
+      }
   )");
 }
 

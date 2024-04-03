@@ -18,10 +18,12 @@ void MainWidget::setupMainWidget( ) {
   stackedLayout->addWidget(homePage);
   stackedLayout->addWidget(playlistPage);
   stackedLayout->addWidget(localFolderPage);
+  stackedLayout->addWidget(settingsPage);
 
   pageManager.GetActivePage( )->setVisible(true);
   playlistPage->setVisible(false);
   localFolderPage->setVisible(false);
+  settingsPage->setVisible(false);
 
   hbox->addLayout(stackedLayout, 0);
 
@@ -36,16 +38,25 @@ void MainWidget::setupMainWidget( ) {
       stackedLayout->itemAt(0)->widget( )->setVisible(true);
       stackedLayout->itemAt(1)->widget( )->setVisible(false);
       stackedLayout->itemAt(2)->widget( )->setVisible(false);
+      stackedLayout->itemAt(3)->widget( )->setVisible(false);
     }
     else if (page->GetName( ) == "playlist") {
       stackedLayout->itemAt(0)->widget( )->setVisible(false);
       stackedLayout->itemAt(1)->widget( )->setVisible(true);
       stackedLayout->itemAt(2)->widget( )->setVisible(false);
+      stackedLayout->itemAt(3)->widget( )->setVisible(false);
     }
     else if (page->GetName( ) == "localFolder") {
       stackedLayout->itemAt(0)->widget( )->setVisible(false);
       stackedLayout->itemAt(1)->widget( )->setVisible(false);
       stackedLayout->itemAt(2)->widget( )->setVisible(true);
+      stackedLayout->itemAt(3)->widget( )->setVisible(false);
+    }
+    else if (page->GetName( ) == "settings") {
+      stackedLayout->itemAt(0)->widget( )->setVisible(false);
+      stackedLayout->itemAt(1)->widget( )->setVisible(false);
+      stackedLayout->itemAt(2)->widget( )->setVisible(false);
+      stackedLayout->itemAt(3)->widget( )->setVisible(true);
     }
     });
 
@@ -59,7 +70,8 @@ MainWidget::MainWidget(QWidget* parent)
   playlistNav(new PlaylistNavModule(this)),
   playlistPage(new PlaylistPage(this)),
   homePage(new HomePage(this)),
-  localFolderPage(new LocalFolderPage(this)) {
+  localFolderPage(new LocalFolderPage(this)),
+  settingsPage(new SettingsPage(this)) {
   pageManager.SetActivePage(homePage);
   setupMainWidget( );
 }

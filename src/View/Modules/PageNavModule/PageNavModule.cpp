@@ -2,10 +2,10 @@
 
 PageNavModule::PageNavModule(QWidget* parent) :
   QFrame(parent),
-  home(new PageNavigator(new HomePage( ), "Home", ":icons/home-outline.svg", "#81D4FA")),
-  localFiles(new PageNavigator(new LocalFolderPage( ), "Local Files", ":icons/folder-outline.svg", "#FFE082")),
-  playlist(new PageNavigator(new PlaylistPage( ), "Playlist", ":icons/magnify.svg", "#CE93D8")),
-  settings(new PageNavigator(new SettingsPage( ), "Settings", ":icons/magnify.svg", "#C5E1A5")) {
+  home(new PageButton(QString("Home"), QString("#81D4FA"), QString(":icons/home-outline.svg"), new HomePage( ), this)),
+  localFiles(new PageButton("Local Files", QString("#FFE082"), QString(":icons/folder-outline.svg"), new LocalFolderPage( ), this)),
+  playlist(new PageButton("Playlist", QString("#CE93D8"), QString(":icons/magnify.svg"), new PlaylistPage( ), this)),
+  settings(new PageButton("Settings", QString("#C5E1A5"), QString(":icons/magnify.svg"), new SettingsPage( ), this)) {
 
   this->setStyleSheet(R"(
     background-color: #282828;
@@ -23,35 +23,35 @@ PageNavModule::PageNavModule(QWidget* parent) :
   layout->addWidget(localFiles);
   layout->addWidget(playlist);
 
-  home->select( );
+  home->Select( );
 
   PageManager& pageManager = PageManager::getInstance( );
-  connect(home, &PageNavigator::SelectedChanged, [&pageManager, this](Page* page) {
-    home->select( );
-    localFiles->unselect( );
-    playlist->unselect( );
-    settings->unselect( );
+  connect(home, &NavButton::SelectedChanged, [&pageManager, this](Page* page) {
+    home->Select( );
+    localFiles->Unselect( );
+    playlist->Unselect( );
+    settings->Unselect( );
     emit pageManager.ActivePageChanged(page);
     });
-  connect(localFiles, &PageNavigator::SelectedChanged, [&pageManager, this](Page* page) {
-    home->unselect( );
-    localFiles->select( );
-    playlist->unselect( );
-    settings->unselect( );
+  connect(localFiles, &NavButton::SelectedChanged, [&pageManager, this](Page* page) {
+    home->Unselect( );
+    localFiles->Select( );
+    playlist->Unselect( );
+    settings->Unselect( );
     emit pageManager.ActivePageChanged(page);
     });
-  connect(playlist, &PageNavigator::SelectedChanged, [&pageManager, this](Page* page) {
-    home->unselect( );
-    localFiles->unselect( );
-    playlist->select( );
-    settings->unselect( );
+  connect(playlist, &NavButton::SelectedChanged, [&pageManager, this](Page* page) {
+    home->Unselect( );
+    localFiles->Unselect( );
+    playlist->Select( );
+    settings->Unselect( );
     emit pageManager.ActivePageChanged(page);
     });
-  connect(settings, &PageNavigator::SelectedChanged, [&pageManager, this](Page* page) {
-    home->unselect( );
-    localFiles->unselect( );
-    playlist->unselect( );
-    settings->select( );
+  connect(settings, &NavButton::SelectedChanged, [&pageManager, this](Page* page) {
+    home->Unselect( );
+    localFiles->Unselect( );
+    playlist->Unselect( );
+    settings->Select( );
     emit pageManager.ActivePageChanged(page);
     });
 }

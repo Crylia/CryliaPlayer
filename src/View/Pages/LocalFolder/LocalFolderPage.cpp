@@ -3,7 +3,7 @@
 LocalFolderPage::LocalFolderPage(QWidget* parent) : Page(parent) {
 
   setStyleSheet(R"(
-      background-color: #FF2828;
+      background-color: #282828;
       border-radius: 12px;
   )");
 

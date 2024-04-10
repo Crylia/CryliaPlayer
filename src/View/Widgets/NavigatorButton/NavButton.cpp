@@ -1,20 +1,7 @@
-#include "PageNavigator.h"
-#include <iostream>
+#include "NavButton.h"
 
-class SquareIcon : public QLabel {
-public:
-  QSize sizeHint( ) const override {
-    QSize hint = QLabel::sizeHint( );
-    int side = qMin(hint.width( ), hint.height( ));
-    return QSize(side, side);
-  }
-};
-
-PageNavigator::PageNavigator(Page* page, QString text, QString icon, QString color, QWidget* parent)
-  :page(page), m_text(new QLabel(text)), m_icon(new SquareIcon( )), m_color(color), m_iconPath(icon) {
-
-
-  QSvgRenderer renderer(icon);
+void NavButton::setupButton( ) {
+  QSvgRenderer renderer(iconPath);
 
   QPixmap pixmap(32, 32);
   pixmap.fill(Qt::transparent);
@@ -30,10 +17,10 @@ PageNavigator::PageNavigator(Page* page, QString text, QString icon, QString col
   m_icon->setObjectName("icon");
   m_text->setObjectName("Text");
 
-  setObjectName("PageNavigator");
+  setObjectName("NavButton");
   setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   setStyleSheet(R"(
-      #PageNavigator{
+      #NavButton{
         border: 4px solid #414141;
         border-radius: 6px;
       }
@@ -60,30 +47,15 @@ PageNavigator::PageNavigator(Page* page, QString text, QString icon, QString col
 
 }
 
-void PageNavigator::unselect( ) {
-  setStyleSheet(R"(
-    #PageNavigator{
-      border: 4px solid #414141;
-      border-radius: 6px;
-    }
-    #Text{
-        color: #E0E0E0;
-      }
-  )");
+NavButton::NavButton(QString text, QString color, QString icon_path, Page* page, QWidget* parent = nullptr) :
+  QPushButton(parent),
+  m_text(new QLabel(text)),
+  m_color(new QString(color)),
+  m_icon(new SquareIcon( )),
+  page(page),
+  iconPath(icon_path),
+  color(color) {
+  setupButton( );
 }
 
-void PageNavigator::select( ) {
-  setStyleSheet(R"(
-    #PageNavigator{
-      border: 4px solid )" + m_color + R"(;
-      border-radius: 6px;
-    }
-    #Text{
-        color: #E0E0E0;
-      }
-  )");
-}
-
-QString PageNavigator::GetText( ) {
-  return m_text->text( );
-}
+NavButton::~NavButton( ) { }

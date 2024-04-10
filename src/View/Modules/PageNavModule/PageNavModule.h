@@ -4,8 +4,10 @@
 #include <QVector>
 #include <QFrame>
 #include <QSizePolicy>
+#include <QVBoxLayout>
 
-#include "../../Widgets/PageNavigator/PageNavigator.h"
+#include "../../Widgets/NavigatorButton/NavButton.h"
+#include "../../Widgets/NavigatorButton/PageButton/PageButton.h"
 #include "../../Tools/SvgToPixmap.hpp"
 #include "../../Pages/Home/HomePage.h"
 #include "../../Pages/Playlist/PlaylistPage.h"
@@ -16,12 +18,12 @@
 class PageNavModule : public QFrame {
   Q_OBJECT
 private:
-  QVector<PageNavigator*>* pages;
+  QVector<NavButton*>* pages;
 
-  PageNavigator* home;
-  PageNavigator* localFiles;
-  PageNavigator* playlist;
-  PageNavigator* settings;
+  NavButton* home;
+  NavButton* localFiles;
+  NavButton* playlist;
+  NavButton* settings;
 
 public:
   PageNavModule(QWidget* parent = nullptr);

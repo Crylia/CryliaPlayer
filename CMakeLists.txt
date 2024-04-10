@@ -60,6 +60,7 @@ target_link_libraries(CryliaPlayer PRIVATE
     ${SDL_LIBRARIES}
     ${SDL_MIXER_LIBRARY}
     PkgConfig::LIBAV
+    fmt
 )
 
 install(TARGETS CryliaPlayer

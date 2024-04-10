@@ -3,11 +3,12 @@
 #include <filesystem>
 #include <QApplication>
 #include <iostream>
+#include <fmt/core.h>
 
 bool CheckValidFile(std::filesystem::path path) {
     //Allow to start with a song
     if (!std::filesystem::exists(path) || !std::filesystem::is_regular_file(path)) {
-        std::cerr << "ERROR: Path or file doesn't exist / is valid" << std::endl;
+        fmt::print("ERROR: Path or file doesn't exist / is valid");
         return false;
     }
     std::string extension = path.extension( ).string( );

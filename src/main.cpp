@@ -1,29 +1,41 @@
 #include "View/MainWindow.h"
 
-#include <filesystem>
 #include <QApplication>
+#include <filesystem>
+#include <fmt/printf.h>
 #include <iostream>
-#include <fmt/core.h>
+#include <memory>
 
+#include "core/CliArgHandler/CliArgHandler.h"
+
+// Checks if the given path leads to a valid audio formatted file. Does only do
+// basic checks and not check the actual codec
 bool CheckValidFile(std::filesystem::path path) {
-    //Allow to start with a song
-    if (!std::filesystem::exists(path) || !std::filesystem::is_regular_file(path)) {
-        fmt::print("ERROR: Path or file doesn't exist / is valid");
-        return false;
-    }
-    std::string extension = path.extension( ).string( );
-    if (!(extension == ".mp3" || extension == ".flac")) {
-        std::cerr << "ERROR: Filetype is not supported, supported types are .mp3, .flac" << std::endl;
-        return false;
-    }
-    return true;
+  if (!std::filesystem::exists(path) ||
+      !std::filesystem::is_regular_file(path)) {
+    fprintf(stderr, "ERROR: Path or file doesn't exist / is valid");
+    return false;
+  }
+  auto extension = path.extension().string();
+  if (!(extension == ".mp3" || extension == ".flac")) {
+    fprintf(
+        stderr,
+        "ERROR: Filetype is not supported, supported types are .mp3, .flac");
+    return false;
+  }
+  return true;
 }
 
-int main(int argc, char* argv[]) {
-    QApplication a(argc, argv);
-    MainWindow* w = argc > 1 && CheckValidFile(std::filesystem::path(argv[1])) ? new MainWindow(/*std::filesystem::path(argv[1])*/) : new MainWindow( );
-    w->setMinimumHeight(600);
-    w->show( );
+int main(int argc, char *argv[]) {
+  const QApplication a(argc, argv);
 
-    return a.exec( );
+  // Add the song path to the cli singleton that will make it accessible for
+  // other classes to use
+  if (argc > 0 && CheckValidFile(argv[1]))
+    CliArgHandler::getInstance().setInputFile(argv[1]);
+
+  const auto w{std::make_unique<MainWindow>()};
+  w->setMinimumHeight(600);
+  w->show();
+  return a.exec();
 }

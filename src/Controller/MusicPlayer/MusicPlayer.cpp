@@ -1,112 +1,118 @@
 #include "MusicPlayer.h"
+#include <memory>
 
-MusicPlayer::~MusicPlayer( ) { }
+MusicPlayer::MusicPlayer()
+    : songQueue(new SongQueue()), songHistory(new SongHistory<Song *>()) {
+  // TODO: Replace later with automatic song extraction
+  Song *argsSong = {new Song(
+      "REPLACE ME", "REPLACE ME", "REPLACE ME", "", "", "", "", "", "", "", "",
+      "", CliArgHandler::getInstance().getInputFile().toStdString(), 0, "")};
 
-void MusicPlayer::PlaySong(Song* song) {
+  if (argsSong->GetPath() != "") {
+    PlaySong(argsSong);
+  }
+}
+
+void MusicPlayer::PlaySong(Song *song) {
   songQueue->SetTop(song);
-  songHistory->push(songQueue->Top( ));
+  songHistory->push(songQueue->Top());
 
-  audio.PlaySong(songQueue->Top( )->GetPath( ));
+  audio.PlaySong(songQueue->Top()->GetPath());
 
-  emit SongChanged( );
+  emit SongChanged();
 }
 
-void MusicPlayer::NextSong( ) {
-  if (songQueue->IsEmpty( )) {
-    audio.StopMusic( );
+void MusicPlayer::NextSong() {
+  if (songQueue->IsEmpty()) {
+    audio.StopMusic();
     return;
   }
 
-  songHistory->push(songQueue->Top( ));
-  songQueue->Next( );
+  songHistory->push(songQueue->Top());
+  songQueue->Next();
 
-  audio.PlaySong(songQueue->Top( )->GetPath( ));
-  emit SongChanged( );
+  audio.PlaySong(songQueue->Top()->GetPath());
+  emit SongChanged();
 }
 
-void MusicPlayer::NextSong(Song* song, bool isPrioQueue) {
-  if (songQueue->IsEmpty( )) {
-    audio.StopMusic( );
+void MusicPlayer::NextSong(Song *song, bool isPrioQueue) {
+  if (songQueue->IsEmpty()) {
+    audio.StopMusic();
     return;
   }
 
-  songHistory->push(songQueue->Top( ));
+  songHistory->push(songQueue->Top());
   songQueue->JumpToSong(song, isPrioQueue);
 
-  audio.PlaySong(songQueue->Top( )->GetPath( ));
-  emit SongChanged( );
+  audio.PlaySong(songQueue->Top()->GetPath());
+  emit SongChanged();
 }
 
-void MusicPlayer::PreviousSong( ) {
-  if (songHistory->isEmpty( ))
+void MusicPlayer::PreviousSong() {
+  if (songHistory->isEmpty())
     return;
 
-  songQueue->SetTop(songHistory->top( ));
-  songHistory->pop( );
+  songQueue->SetTop(songHistory->top());
+  songHistory->pop();
 
-  audio.PlaySong(songQueue->Top( )->GetPath( ));
-  emit SongChanged( );
+  audio.PlaySong(songQueue->Top()->GetPath());
+  emit SongChanged();
 }
 
-void MusicPlayer::SkipToTimestamp(unsigned const int& skipTo) {
-  if (audio.IsMusicPlaying( ) == 0) return;
+void MusicPlayer::SkipToTimestamp(unsigned const int &skipTo) {
+  if (audio.IsMusicPlaying() == 0)
+    return;
 
   audio.SetMusicPos(skipTo);
 }
 
-int MusicPlayer::GetSongProgression( ) {
-  return audio.IsMusicPlaying( ) == 1 ? audio.GetMusicPos( ) : 0;
+int MusicPlayer::GetSongProgression() {
+  return audio.IsMusicPlaying() == 1 ? audio.GetMusicPos() : 0;
 }
 
-Song* MusicPlayer::GetCurrentlyPlaying( ) {
-  return songQueue->Top( );
-}
+Song *MusicPlayer::GetCurrentlyPlaying() { return songQueue->Top(); }
 
-//For the PriorityQueue
-void MusicPlayer::AddSongToQueue(Song* song) {
+// For the PriorityQueue
+void MusicPlayer::AddSongToQueue(Song *song) {
   songQueue->AddToPriorityQueue(song);
 }
 
-void MusicPlayer::RemoveSongFromQueue(Song* song) {
+void MusicPlayer::RemoveSongFromQueue(Song *song) {
   songQueue->RemoveSongFromPriorityQueue(song);
 }
 
-void MusicPlayer::MoveSongInQueue(Song* songToMove, Song* otherSong, bool beforeElseAfter) {
+void MusicPlayer::MoveSongInQueue(Song *songToMove, Song *otherSong,
+                                  bool beforeElseAfter) {
   songQueue->MoveSongInPriorityQueue(songToMove, otherSong, beforeElseAfter);
 }
 
-void MusicPlayer::shuffleHandler( ) {
-  shuffle ? songQueue->ShufflePlaylist( ) : songQueue->RestorePlaylist( );
+void MusicPlayer::shuffleHandler() {
+  shuffle ? songQueue->ShufflePlaylist() : songQueue->RestorePlaylist();
 }
 
-void MusicPlayer::setQueueLoop( ) {
+void MusicPlayer::setQueueLoop() {
   loop == All ? songQueue->LinkQueue(true) : songQueue->LinkQueue(false);
 }
 
-bool MusicPlayer::IsPlaying( ) {
-  return audio.IsMusicPaused( );
-}
+bool MusicPlayer::IsPlaying() { return audio.IsMusicPaused(); }
 
-bool MusicPlayer::IsActive( ) {
-  return audio.IsMusicPlaying( );
-}
+bool MusicPlayer::IsActive() { return audio.IsMusicPlaying(); }
 
-QPixmap MusicPlayer::GetAlbumArt( ) {
-  return audio.GetAlbumCover( );
-}
+QPixmap MusicPlayer::GetAlbumArt() { return audio.GetAlbumCover(); }
 
 /**
- * @brief Resumes or Plays the music depending on the current state, if no music is playing
- * it returns false
+ * @brief Resumes or Plays the music depending on the current state, if no music
+ * is playing it returns false
  *
  * @return true Music is Playing
  * @return false Music is Paused or nothing is playing
  */
-bool MusicPlayer::PlayPause( ) {
-  if (!audio.IsMusicPlaying( )) return false;
+bool MusicPlayer::PlayPause() {
+  if (!audio.IsMusicPlaying())
+    return false;
 
-  audio.TogglePlayPause( );
+  audio.TogglePlayPause();
 
-  emit SongChanged( );
-  return !audio.IsMusicPaused( );
+  emit SongChanged();
+  return !audio.IsMusicPaused();
 }

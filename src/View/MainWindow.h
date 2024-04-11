@@ -1,23 +1,23 @@
 #pragma once
 
-#include <QMainWindow>
-#include <QtWidgets>
-#include <QVBoxLayout>
 #include <QLayout>
+#include <QMainWindow>
 #include <QPixmap>
+#include <QVBoxLayout>
+#include <QtWidgets>
 #include <filesystem>
+#include <memory>
 
 #include "MainWidget.h"
 
 class MainWindow : public QMainWindow {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    MainWindow(QWidget* parent = nullptr);
-    MainWindow(std::filesystem::path path, QWidget* parent = nullptr);
-    ~MainWindow( );
+  MainWindow(QWidget *parent = nullptr);
+  ~MainWindow();
 
 private:
-    MainWidget* mainWidget;
+  MainWidget *mainWidget;
 
-    void setupMainWindow( );
+  void setupMainWindow();
 };

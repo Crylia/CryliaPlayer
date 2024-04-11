@@ -1,6 +1,6 @@
 #include "MainWindow.h"
 
-void MainWindow::setupMainWindow( ) {
+void MainWindow::setupMainWindow() {
   this->setWindowTitle("Crylia Player");
   this->setWindowIcon(QIcon(":aqua.jpg"));
 
@@ -14,9 +14,9 @@ void MainWindow::setupMainWindow( ) {
   this->setCentralWidget(mainWidget);
 }
 
-MainWindow::MainWindow(QWidget* parent)
-  : QMainWindow(parent), mainWidget(new MainWidget(this)) {
-  setupMainWindow( );
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent), mainWidget(new MainWidget(this)) {
+  setupMainWindow();
 }
 
-MainWindow::~MainWindow( ) { }
+MainWindow::~MainWindow() {}

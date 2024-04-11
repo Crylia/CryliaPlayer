@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=CryliaPlayer
+Exec=/usr/local/bin/CryliaPlayer %f
+MimeType=audio/mpeg;audio/x-flac;
+Icon=/usr/local/share/icons/aqua.jpg
+Terminal=false

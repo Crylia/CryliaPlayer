@@ -3,23 +3,22 @@
 #include <QObject>
 #include <QPixmap>
 
-#include "../../core/audio/audio.h"
+#include "../../core/CliArgHandler/CliArgHandler.h"
 #include "../../core/SongHistory/SongHistory.hpp"
 #include "../../core/SongQueue/SongQueue.h"
+#include "../../core/audio/audio.h"
 #include "../../core/song/song.h"
-
 
 class MusicPlayer : public QObject {
   Q_OBJECT
 public:
-  static MusicPlayer& getInstance( ) {
+  static MusicPlayer &getInstance() {
     static MusicPlayer instance;
     return instance;
   }
 
 private:
-  MusicPlayer( ) :
-    songQueue(new SongQueue( )), songHistory(new SongHistory<Song*>( )) { }
+  MusicPlayer();
 
   // 0 no shuffle, 1 shuffling
   int shuffle = 0;
@@ -29,100 +28,102 @@ private:
   bool playing = 0;
 
   // Song queue, will be filled with the entire playlist by default
-  SongQueue* songQueue;
+  SongQueue *songQueue;
 
   // Contain all played songs
-  SongHistory<Song*>* songHistory;
+  SongHistory<Song *> *songHistory;
 
-  Audio& audio = Audio::getInstance( );
+  Audio &audio = Audio::getInstance();
 
-  void shuffleHandler( );
-  void setQueueLoop( );
+  void shuffleHandler();
+  void setQueueLoop();
 
 public:
-  ~MusicPlayer( );
+  ~MusicPlayer() = default;
 
-  MusicPlayer(MusicPlayer const&) = delete;
-  void operator=(MusicPlayer const&) = delete;
+  MusicPlayer(MusicPlayer const &) = delete;
+  void operator=(MusicPlayer const &) = delete;
 
   /**
    * @brief Will start playing the given song and put itself at the queue top.
    *
    * @param song Song that will start playing
    */
-  void PlaySong(Song* song);
+  void PlaySong(Song *song);
 
   /**
    * @brief Skip the current song and play the next in queue,
    * if nothing is in queue it will stop playing anything.
    *
    */
-  void NextSong( );
+  void NextSong();
 
   /**
-   * @brief Jumps the queue to the given song keeping the non altered queue intact
+   * @brief Jumps the queue to the given song keeping the non altered queue
+   * intact
    *
    * @param song
    * @param isPrioQueue If the song is in the prio queue or normal queue
    */
-  void NextSong(Song* song, bool isPrioQueue);
+  void NextSong(Song *song, bool isPrioQueue);
 
   /**
-   * @brief Rewind the currently playing song to the beginning if playtime >= 5 seconds.
-   * Otherwise play the top song in the history stack
+   * @brief Rewind the currently playing song to the beginning if playtime >= 5
+   * seconds. Otherwise play the top song in the history stack
    *
    */
-  void PreviousSong( );
+  void PreviousSong();
 
   /**
    * @brief Skip the song to the given timestamp
    *
    * @param skipTo time as positive integer
    */
-  void SkipToTimestamp(unsigned const int& skipTo);
+  void SkipToTimestamp(unsigned const int &skipTo);
 
   /**
    * @brief Get the current Song progression as an positive integer
    *
    * @return int current timestamp
    */
-  int GetSongProgression( );
+  int GetSongProgression();
 
   /**
    * @brief Get the Currently Playing Song
    *
    * @return Song& Song thats currently playing
    */
-  Song* GetCurrentlyPlaying( );
+  Song *GetCurrentlyPlaying();
 
   /**
-   * @brief Will either play or pause a current song, if not song is active it returns false.
+   * @brief Will either play or pause a current song, if not song is active it
+   * returns false.
    *
    * @return true if currently playing
    * @return false if paused or nothing playing
    */
-  bool PlayPause( );
+  bool PlayPause();
 
-  bool IsPlaying( );
+  bool IsPlaying();
 
-  QPixmap GetAlbumArt( );
+  QPixmap GetAlbumArt();
 
   void SetShuffle(bool shuffle) {
     this->shuffle = shuffle;
-    shuffleHandler( );
+    shuffleHandler();
   }
-  bool IsActive( );
-  bool GetShuffle( ) { return shuffle; }
+  bool IsActive();
+  bool GetShuffle() { return shuffle; }
   void SetLoop(Loop loop) { this->loop = loop; }
-  Loop GetLoop( ) { return loop; }
-  u_short GetVolume( ) { return audio.GetVolume( ); }
+  Loop GetLoop() { return loop; }
+  u_short GetVolume() { return audio.GetVolume(); }
   void SetVolume(u_short volume) { audio.SetVolume(volume); }
-  int GetSongDuration( ) { return audio.GetMusicDuration( ); }
+  int GetSongDuration() { return audio.GetMusicDuration(); }
 
-  void AddSongToQueue(Song* song);
-  void RemoveSongFromQueue(Song* song);
-  void MoveSongInQueue(Song* songToMove, Song* otherSong, bool beforeElseAfter);
+  void AddSongToQueue(Song *song);
+  void RemoveSongFromQueue(Song *song);
+  void MoveSongInQueue(Song *songToMove, Song *otherSong, bool beforeElseAfter);
 
 signals:
-  void SongChanged( );
+  void SongChanged();
 };

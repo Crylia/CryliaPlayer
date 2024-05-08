@@ -1,7 +1,8 @@
-#include "ConditionalCircularLinkedList.h"
+#include "ConditionalCircularLinkedList.hpp"
 
-void ConditionalCircularLinkedList::Append(Song* song) {
-  Node* newNode = new Node(song);
+void ConditionalCircularLinkedList::Append(Song *song) {
+  Node *newNode;
+  newNode->data = song;
   if (head == nullptr) {
     head = newNode;
 
@@ -10,9 +11,8 @@ void ConditionalCircularLinkedList::Append(Song* song) {
       head->next = head;
 
     current = head;
-  }
-  else {
-    Node* tmp = head;
+  } else {
+    Node *tmp = head;
 
     while (tmp->next != head)
       tmp = tmp->next;
@@ -27,11 +27,11 @@ void ConditionalCircularLinkedList::Append(Song* song) {
 
 void ConditionalCircularLinkedList::SetListMode(bool isLooping) {
   if (head == nullptr) {
-    std::cout << "WARN: List is empty, cannot set mode" << std::endl;
+    fmt::println("WARN: List is empty, cannot set mode");
     return;
   }
 
-  Node* tmp = head;
+  Node *tmp = head;
   while (tmp->next != head)
     tmp = tmp->next;
 
@@ -41,32 +41,35 @@ void ConditionalCircularLinkedList::SetListMode(bool isLooping) {
     tmp->next = head;
 }
 
-void ConditionalCircularLinkedList::Clear( ) {
+void ConditionalCircularLinkedList::Clear() {
   while (head != nullptr) {
-    Node* tmp = head;
+    Node *tmp = head;
     head = head->next;
     delete tmp;
     delete current;
   }
 }
 
-void ConditionalCircularLinkedList::Advance( ) {
+void ConditionalCircularLinkedList::Advance() {
   if (current != nullptr)
     current = current->next;
 }
 
-Song* ConditionalCircularLinkedList::GetNext( ) {
+Song *ConditionalCircularLinkedList::GetNext() {
   if (current != nullptr)
     return current->data;
+  return nullptr;
 }
 
-void ConditionalCircularLinkedList::AddSongBefore(Song* newSong, Song* addSongBefore) {
-  if (head == nullptr) return;
+void ConditionalCircularLinkedList::AddSongBefore(Song *newSong,
+                                                  Song *addSongBefore) {
+  if (head == nullptr)
+    return;
 
-  Node* newNode = new Node(newSong);
+  Node *newNode = new Node(newSong);
 
-  Node* current = head;
-  Node* prev = nullptr;
+  Node *current = head;
+  Node *prev = nullptr;
 
   do {
     if (current->data == addSongBefore) {
@@ -74,14 +77,13 @@ void ConditionalCircularLinkedList::AddSongBefore(Song* newSong, Song* addSongBe
         newNode->next = head;
         head = newNode;
 
-        Node* lastNode = head;
+        Node *lastNode = head;
         while (lastNode->next != head)
           lastNode = lastNode->next;
 
         if (isLinked)
           lastNode->next = head;
-      }
-      else {
+      } else {
         prev->next = newNode;
         newNode->next = current;
       }
@@ -93,12 +95,14 @@ void ConditionalCircularLinkedList::AddSongBefore(Song* newSong, Song* addSongBe
   } while (current != head);
 }
 
-void ConditionalCircularLinkedList::AddSongAfter(Song* newSong, Song* addSongAfter) {
-  if (head == nullptr) return;
+void ConditionalCircularLinkedList::AddSongAfter(Song *newSong,
+                                                 Song *addSongAfter) {
+  if (head == nullptr)
+    return;
 
-  Node* newNode = new Node(newSong);
+  Node *newNode = new Node(newSong);
 
-  Node* current = head;
+  Node *current = head;
 
   do {
     if (current->data == addSongAfter) {
@@ -108,34 +112,33 @@ void ConditionalCircularLinkedList::AddSongAfter(Song* newSong, Song* addSongAft
     }
     current = current->next;
   } while (current != head);
-
 }
 
-Song* ConditionalCircularLinkedList::RemoveSong(Song* removeSong) {
-  if (head == nullptr) return nullptr;
+Song *ConditionalCircularLinkedList::RemoveSong(Song *removeSong) {
+  if (head == nullptr)
+    return nullptr;
 
-  Node* current = head;
-  Node* prev = nullptr;
+  Node *current = head;
+  Node *prev = nullptr;
 
   do {
     if (current->data == removeSong) {
       if (prev == nullptr) {
         head = current->next;
-        Node* lastNode = head;
+        Node *lastNode = head;
         while (lastNode->next != current)
           lastNode = lastNode->next;
 
         if (isLinked)
           lastNode->next = head;
 
-        Song* deletedSong = current->data;
+        Song *deletedSong = current->data;
         delete current;
         return deletedSong;
-      }
-      else {
+      } else {
         prev->next = current->next;
 
-        Song* deletedSong = current->data;
+        Song *deletedSong = current->data;
         delete current;
         return deletedSong;
       }
@@ -143,22 +146,21 @@ Song* ConditionalCircularLinkedList::RemoveSong(Song* removeSong) {
     prev = current;
     current = current->next;
   } while (current != head);
+  return nullptr;
 }
 
-bool ConditionalCircularLinkedList::IsEmpty( ) {
-  return current == nullptr;
-}
+bool ConditionalCircularLinkedList::IsEmpty() { return current == nullptr; }
 
-void ConditionalCircularLinkedList::Shuffle( ) {
+void ConditionalCircularLinkedList::Shuffle() {
   int cnt = 0;
-  Node* tmp = head;
+  Node *tmp = head;
 
   while (tmp != nullptr) {
     cnt++;
     tmp = tmp->next;
   }
 
-  Node** nodes = new Node * [cnt];
+  Node **nodes = new Node *[cnt];
 
   tmp = head;
   for (int i = 0; i < cnt; i++) {
@@ -167,9 +169,9 @@ void ConditionalCircularLinkedList::Shuffle( ) {
   }
 
   for (int i = cnt; i > 0; i--) {
-    int j = rand( ) % (i + 1);
+    int j = rand() % (i + 1);
 
-    Node* tmp = nodes[i];
+    Node *tmp = nodes[i];
     nodes[i] = nodes[j];
     nodes[j] = tmp;
   }

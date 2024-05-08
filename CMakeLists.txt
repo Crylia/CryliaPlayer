@@ -9,22 +9,34 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Set compiler flags
+if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+  # For GCC or G++
+  #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
+  #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
+elseif(MSVC)
+  # For Visual Studio
+  #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /Wall")
+  #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Wall")
+endif()
+
+
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets Qml Svg Core Sql)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Qml Svg Core Sql)
 
 find_package(SDL2 QUIET)
 
 if(NOT SDL2_FOUND)
-    message(STATUS "SDL2 not found. Fallback to SDL3.")
+  message(STATUS "SDL2 not found. Fallback to SDL3.")
 
-    # Find SDL3 package
-    find_package(SDL3 REQUIRED CONFIG)
-    set(SDL_INCLUDE_DIRS ${SDL3_INCLUDE_DIRS})
-    set(SDL_LIBRARIES ${SDL3_LIBRARIES})
+  # Find SDL3 package
+  find_package(SDL3 REQUIRED CONFIG)
+  set(SDL_INCLUDE_DIRS ${SDL3_INCLUDE_DIRS})
+  set(SDL_LIBRARIES ${SDL3_LIBRARIES})
 else()
-    message(STATUS "SDL2 found.")
-    set(SDL_INCLUDE_DIRS ${SDL2_INCLUDE_DIRS})
-    set(SDL_LIBRARIES ${SDL2_LIBRARIES})
+  message(STATUS "SDL2 found.")
+  set(SDL_INCLUDE_DIRS ${SDL2_INCLUDE_DIRS})
+  set(SDL_LIBRARIES ${SDL2_LIBRARIES})
 endif()
 
 find_library(SDL_MIXER_LIBRARY NAMES SDL2_mixer SDL3_mixer)
@@ -61,6 +73,8 @@ target_link_libraries(CryliaPlayer PRIVATE
     ${SDL_MIXER_LIBRARY}
     PkgConfig::LIBAV
     fmt
+    stdc++fs
+    #mavx
 )
 
 install(TARGETS CryliaPlayer

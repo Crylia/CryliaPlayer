@@ -1,4 +1,4 @@
-#include "MainWindow.h"
+#include "MainWindow.hpp"
 
 void MainWindow::setupMainWindow() {
   this->setWindowTitle("Crylia Player");

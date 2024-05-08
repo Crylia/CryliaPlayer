@@ -1,73 +1,73 @@
-#include "SongQueue.h"
+#include "SongQueue.hpp"
 
-SongQueue::SongQueue( ) {
+SongQueue::SongQueue() {
   queue = new ConditionalCircularLinkedList(false);
 
-  // Its never going to be linked, I'm just too lazy to make a new implementation thats almost the same
+  // Its never going to be linked, I'm just too lazy to make a new
+  // implementation thats almost the same
   priorityQueue = new ConditionalCircularLinkedList(false);
 }
 
-SongQueue::~SongQueue( ) { }
+SongQueue::~SongQueue() {}
 
-void SongQueue::PopulateQueue(const std::list<Song*>& songList) {
-  for (Song* song : songList) {
+void SongQueue::PopulateQueue(const std::list<Song *> &songList) {
+  for (auto &song : songList) {
     queue->Append(song);
   }
 }
 
-void SongQueue::Next( ) {
-  if (priorityQueue->IsEmpty( )) {
-    topSong = queue->GetNext( );
-    queue->Advance( );
+void SongQueue::Next() {
+  if (priorityQueue->IsEmpty()) {
+    topSong = queue->GetNext();
+    queue->Advance();
 
     return;
   }
 
-  topSong = priorityQueue->GetNext( );
-  priorityQueue->Advance( );
+  topSong = priorityQueue->GetNext();
+  priorityQueue->Advance();
 }
 
-void SongQueue::JumpToSong(Song* song, bool fromPrioQueue) {
+void SongQueue::JumpToSong(Song *song, bool fromPrioQueue) {
   if (fromPrioQueue) {
-    if (priorityQueue->IsEmpty( ))
+    if (priorityQueue->IsEmpty())
       return;
 
-    while (priorityQueue->GetNext( ) != song) {
-      priorityQueue->Advance( );
+    while (priorityQueue->GetNext() != song) {
+      priorityQueue->Advance();
       topSong = song;
     }
   }
 
-  if (queue->IsEmpty( ))
+  if (queue->IsEmpty())
     return;
 
-  while (queue->GetNext( ) != song) {
-    queue->Advance( );
-    topSong = song;
+  while (queue->GetNext() != song) {
+    queue->Advance();
+    topSong = std::move(song);
   }
 }
 
-void SongQueue::AddToPriorityQueue(Song* song) {
-  priorityQueue->Append(song);
+void SongQueue::AddToPriorityQueue(Song *song) { priorityQueue->Append(song); }
+
+bool SongQueue::IsEmpty() {
+  return queue->IsEmpty() && priorityQueue->IsEmpty();
 }
 
-bool SongQueue::IsEmpty( ) {
-  return queue->IsEmpty( ) && priorityQueue->IsEmpty( );
-}
+Song *SongQueue::Top() { return topSong; }
 
-Song* SongQueue::Top( ) { return topSong; }
+void SongQueue::SetTop(Song *song) { topSong = song; }
 
-void SongQueue::SetTop(Song* song) { topSong = song; }
-
-void SongQueue::RemoveSongFromPriorityQueue(Song* song) {
-  if (priorityQueue->IsEmpty( ))
+void SongQueue::RemoveSongFromPriorityQueue(Song *song) {
+  if (priorityQueue->IsEmpty())
     return;
 
   priorityQueue->RemoveSong(song);
 }
 
-void SongQueue::MoveSongInPriorityQueue(Song* songToMove, Song* otherSong, bool beforeElseAfter) {
-  if (priorityQueue->IsEmpty( ))
+void SongQueue::MoveSongInPriorityQueue(Song *songToMove, Song *otherSong,
+                                        bool beforeElseAfter) {
+  if (priorityQueue->IsEmpty())
     return;
 
   if (beforeElseAfter)
@@ -76,20 +76,20 @@ void SongQueue::MoveSongInPriorityQueue(Song* songToMove, Song* otherSong, bool 
     priorityQueue->AddSongAfter(songToMove, otherSong);
 }
 
-void SongQueue::ShufflePlaylist( ) {
-  if (queue && queue->IsEmpty( )) return;
-  //First backup the original list state
-  queue_original = new ConditionalCircularLinkedList(queue);
+void SongQueue::ShufflePlaylist() {
+  if (queue && queue->IsEmpty())
+    return;
+  // First backup the original list state
+  queue_original = queue;
 
-  queue->Shuffle( );
+  // queue->Shuffle( );
 }
 
-void SongQueue::RestorePlaylist( ) {
-  if (queue_original == nullptr) return;
+void SongQueue::RestorePlaylist() {
+  if (queue_original == nullptr)
+    return;
 
-  queue = new ConditionalCircularLinkedList(queue_original);
+  queue = queue_original;
 }
 
-void SongQueue::LinkQueue(bool link) {
-  queue->SetListMode(link);
-}
+void SongQueue::LinkQueue(bool link) { queue->SetListMode(link); }

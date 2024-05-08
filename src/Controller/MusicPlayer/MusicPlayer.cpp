@@ -1,23 +1,25 @@
-#include "MusicPlayer.h"
+#include "MusicPlayer.hpp"
 #include <memory>
 
 MusicPlayer::MusicPlayer()
     : songQueue(new SongQueue()), songHistory(new SongHistory<Song *>()) {
   // TODO: Replace later with automatic song extraction
-  Song *argsSong = {new Song(
-      "REPLACE ME", "REPLACE ME", "REPLACE ME", "", "", "", "", "", "", "", "",
-      "", CliArgHandler::getInstance().getInputFile().toStdString(), 0, "")};
+  auto argsSong{std::make_unique<Song>(
+      QString("REPLACE ME"), QString("REPLACE ME"), QString("REPLACE ME"),
+      QString(""), QString(""), QString(""), QString(""), QString(""),
+      QString(""), QString(""), QString(""), QString(""),
+      CliArgHandler::getInstance().getInputFile(), 0)};
 
-  if (argsSong->GetPath() != "") {
-    PlaySong(argsSong);
+  if (argsSong->path() != "") {
+    PlaySong(std::move(argsSong));
   }
 }
 
-void MusicPlayer::PlaySong(Song *song) {
-  songQueue->SetTop(song);
+void MusicPlayer::PlaySong(std::unique_ptr<Song> song) {
+  songQueue->SetTop(song.get());
   songHistory->push(songQueue->Top());
 
-  audio.PlaySong(songQueue->Top()->GetPath());
+  audio.PlaySong(songQueue->Top()->path());
 
   emit SongChanged();
 }
@@ -31,20 +33,20 @@ void MusicPlayer::NextSong() {
   songHistory->push(songQueue->Top());
   songQueue->Next();
 
-  audio.PlaySong(songQueue->Top()->GetPath());
+  audio.PlaySong(songQueue->Top()->path());
   emit SongChanged();
 }
 
-void MusicPlayer::NextSong(Song *song, bool isPrioQueue) {
+void MusicPlayer::NextSong(std::unique_ptr<Song> song, bool isPrioQueue) {
   if (songQueue->IsEmpty()) {
     audio.StopMusic();
     return;
   }
 
   songHistory->push(songQueue->Top());
-  songQueue->JumpToSong(song, isPrioQueue);
+  songQueue->JumpToSong(song.get(), isPrioQueue);
 
-  audio.PlaySong(songQueue->Top()->GetPath());
+  audio.PlaySong(songQueue->Top()->path());
   emit SongChanged();
 }
 
@@ -55,7 +57,7 @@ void MusicPlayer::PreviousSong() {
   songQueue->SetTop(songHistory->top());
   songHistory->pop();
 
-  audio.PlaySong(songQueue->Top()->GetPath());
+  audio.PlaySong(songQueue->Top()->path());
   emit SongChanged();
 }
 
@@ -70,20 +72,24 @@ int MusicPlayer::GetSongProgression() {
   return audio.IsMusicPlaying() == 1 ? audio.GetMusicPos() : 0;
 }
 
-Song *MusicPlayer::GetCurrentlyPlaying() { return songQueue->Top(); }
+std::unique_ptr<Song> MusicPlayer::GetCurrentlyPlaying() {
+  return std::unique_ptr<Song>(songQueue->Top());
+}
 
 // For the PriorityQueue
-void MusicPlayer::AddSongToQueue(Song *song) {
-  songQueue->AddToPriorityQueue(song);
+void MusicPlayer::AddSongToQueue(std::unique_ptr<Song> song) {
+  songQueue->AddToPriorityQueue(song.get());
 }
 
-void MusicPlayer::RemoveSongFromQueue(Song *song) {
-  songQueue->RemoveSongFromPriorityQueue(song);
+void MusicPlayer::RemoveSongFromQueue(std::unique_ptr<Song> song) {
+  songQueue->RemoveSongFromPriorityQueue(song.get());
 }
 
-void MusicPlayer::MoveSongInQueue(Song *songToMove, Song *otherSong,
+void MusicPlayer::MoveSongInQueue(std::unique_ptr<Song> songToMove,
+                                  std::unique_ptr<Song> otherSong,
                                   bool beforeElseAfter) {
-  songQueue->MoveSongInPriorityQueue(songToMove, otherSong, beforeElseAfter);
+  songQueue->MoveSongInPriorityQueue(songToMove.get(), otherSong.get(),
+                                     beforeElseAfter);
 }
 
 void MusicPlayer::shuffleHandler() {
@@ -91,7 +97,7 @@ void MusicPlayer::shuffleHandler() {
 }
 
 void MusicPlayer::setQueueLoop() {
-  loop == All ? songQueue->LinkQueue(true) : songQueue->LinkQueue(false);
+  loop == Loop::All ? songQueue->LinkQueue(true) : songQueue->LinkQueue(false);
 }
 
 bool MusicPlayer::IsPlaying() { return audio.IsMusicPaused(); }
